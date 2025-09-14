@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AgriWiki_Project</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/AgriWiki_Project.styles.css" asp-append-version="true" />
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-light">
+            <div class="container">
+                <a class="navbar-brand" href="#" onclick="return false;">
+                    <i class="fas fa-seedling"></i>
+                    <h1>AgriWiki</h1>
+                </a>
+
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item">
+                            <a class="nav-link active" asp-area="" asp-page="/Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="return false;">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="return false;">Articles</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#" onclick="return false;">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-area="" asp-page="/Auth"
+                                style="color: #28a745 !important; font-weight: 600;">Sign-in</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="main-container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+        @* @RenderBody() *@
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <!-- Brand -->
+            <div class="footer-brand">
+                <i class="fas fa-seedling"></i>
+                <h5>AgriWiki</h5>
+            </div>
+
+            <!-- Tagline -->
+            <div class="footer-tagline">
+                Growing knowledge, cultivating the future
+            </div>
+
+            <!-- Links -->
+            <div class="footer-links">
+                <a href="#" class="footer-link" onclick="return false;">Home</a>
+                <a href="#" class="footer-link" onclick="return false;">About</a>
+                <a href="#" class="footer-link" onclick="return false;">Articles</a>
+                <a href="#" class="footer-link" onclick="return false;">Privacy</a>
+                <a href="#" class="footer-link" onclick="return false;">Contact</a>
+            </div>
+
+            <!-- Social Media -->
+            <div class="footer-social">
+                <a href="#" class="social-link" onclick="return false;" title="Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" class="social-link" onclick="return false;" title="Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" class="social-link" onclick="return false;" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="#" class="social-link" onclick="return false;" title="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+
+            <!-- Divider -->
+            <div class="footer-divider"></div>
+
+            <!-- Copyright -->
+            <div class="footer-copyright">
+                &copy; 2025 AgriWiki Project. All rights reserved. |
+                <a href="#" onclick="return false;">Terms of Service</a> |
+                <a href="#" onclick="return false;">Privacy Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+
+</html>
