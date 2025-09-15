@@ -3,8 +3,231 @@
 @{
     ViewData["Title"] = "Home page";
 }
+<!DOCTYPE html>
+<html lang="en">
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/indexstyle.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-logo">
+                <i class="fas fa-seedling"></i>
+                <h1>AgriWiki</h1>
+                <div class="hero-text">
+                    <p class="tagline">Growing knowledge, cultivating the future</p>
+                </div>
+            </div>
+            <p class="description">Hệ thống tra cứu thông tin cây trồng toàn diện với cơ sở dữ liệu phong phú về cây
+                trồng,
+                bệnh hại, sâu hại, điều kiện sinh trưởng và các ứng dụng thực tế</p>
+
+            <div class="search-section">
+                <div class="search-tabs">
+                    <button class="search-tab active" onclick="switchTab('plants')">Tìm Cây Trồng</button>
+                    <button class="search-tab" onclick="switchTab('diseases')">Bệnh Hại</button>
+                    <button class="search-tab" onclick="switchTab('pests')">Sâu Hại</button>
+                    <button class="search-tab" onclick="switchTab('uses')">Công Dụng</button>
+                </div>
+
+                <form class="search-form" onsubmit="handleSearch(event)">
+                    <input type="text" class="search-input" placeholder="Tìm kiếm cây trồng..." id="searchInput">
+                    <button type="submit" class="search-btn">🔍 Tìm kiếm</button>
+                </form>
+
+                <div class="search-filters" id="searchFilters">
+                    <div class="filter-group">
+                        <label class="filter-label">Danh mục</label>
+                        <select class="filter-select">
+                            <option>Tất cả danh mục</option>
+                            <option>Cây lương thực</option>
+                            <option>Rau củ quả</option>
+                            <option>Cây ăn quả</option>
+                            <option>Cây cảnh</option>
+                            <option>Cây thuốc</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Điều kiện ánh sáng</label>
+                        <select class="filter-select">
+                            <option>Tất cả</option>
+                            <option>Ánh sáng trực tiếp</option>
+                            <option>Bán âm</option>
+                            <option>Chịu được âm</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Loại đất</label>
+                        <select class="filter-select">
+                            <option>Tất cả</option>
+                            <option>Đất cát</option>
+                            <option>Đất sét</option>
+                            <option>Đất thịt</option>
+                            <option>Đất phù sa</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label class="filter-label">Độ ẩm</label>
+                        <select class="filter-select">
+                            <option>Tất cả</option>
+                            <option>Khô hạn</option>
+                            <option>Trung bình</option>
+                            <option>Ẩm ướt</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="quick-searches">
+                    <span class="quick-search-tag" onclick="quickSearch('lúa')">🌾 Lúa</span>
+                    <span class="quick-search-tag" onclick="quickSearch('cà chua')">🍅 Cà chua</span>
+                    <span class="quick-search-tag" onclick="quickSearch('xoài')">🥭 Xoài</span>
+                    <span class="quick-search-tag" onclick="quickSearch('hoa hồng')">🌹 Hoa hồng</span>
+                    <span class="quick-search-tag" onclick="quickSearch('nghệ')">🌿 Nghệ</span>
+                    <span class="quick-search-tag" onclick="quickSearch('sầu riêng')">🌰 Sầu riêng</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Database Stats -->
+    <section class="database-stats">
+        <div class="database-container fade-in">
+            <h2 class="section-title" style="color: white; margin-bottom: 2rem;">Cơ Sở Dữ Liệu Toàn Diện</h2>
+            <p style="font-size: 1.3rem; opacity: 0.9; max-width: 800px; margin: 0 auto 3rem;">
+                Hệ thống quản lý thông tin chi tiết với mối quan hệ phức tạp giữa cây trồng, bệnh hại, sâu hại và các
+                yếu tố
+                môi trường
+            </p>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">15,247</span>
+                    <span class="stat-label">Loài cây trong hệ thống</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">3,892</span>
+                    <span class="stat-label">Loại bệnh hại đã catalogued</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">2,156</span>
+                    <span class="stat-label">Loài sâu hại có hướng dẫn</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">847</span>
+                    <span class="stat-label">Công dụng được phân loại</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">52,381</span>
+                    <span class="stat-label">Người dùng đăng ký</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">99.2%</span>
+                    <span class="stat-label">Độ chính xác dữ liệu</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Fade in animation on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function (entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Search functionality
+        function handleSearch(event) {
+            event.preventDefault();
+            const searchTerm = document.getElementById('searchInput').value;
+            if (searchTerm.trim()) {
+                alert(`Đang tìm kiếm: "${searchTerm}"\n\nKết quả sẽ hiển thị trên trang kết quả tìm kiếm.`);
+            }
+        }
+
+        function quickSearch(term) {
+            document.getElementById('searchInput').value = term;
+            alert(`Tìm kiếm nhanh: "${term}"`);
+        }
+
+        // Counter animation for stats
+        function animateCounters() {
+            const counters = document.querySelectorAll('.stat-number');
+            const speed = 200;
+
+            counters.forEach(counter => {
+                const target = counter.innerText;
+                const isPercentage = target.includes('%');
+                const numericTarget = parseFloat(target.replace(/,/g, '').replace('%', ''));
+
+                counter.innerText = '0';
+
+                const inc = numericTarget / speed;
+                let current = 0;
+
+                const updateCounter = () => {
+                    if (current < numericTarget) {
+                        current += inc;
+                        if (isPercentage) {
+                            counter.innerText = Math.ceil(current) + '%';
+                        } else {
+                            counter.innerText = Math.ceil(current).toLocaleString();
+                        }
+                        setTimeout(updateCounter, 1);
+                    } else {
+                        counter.innerText = target;
+                    }
+                };
+
+                updateCounter();
+            });
+        }
+
+        // Trigger counter animation when stats section is visible
+        const statsSection = document.querySelector('.stats');
+        const statsObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    animateCounters();
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        statsObserver.observe(statsSection);
+
+        // Mobile menu toggle (placeholder for future implementation)
+        console.log('AgriWiki loaded successfully');
+    </script>
+</body>
+
+</html>

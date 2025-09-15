@@ -12,29 +12,41 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 10 Sep 2025 14:17:44 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/indexstyle.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\indexstyle.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-gIDkXBkhJoHbaYBLgsJguiQJTGzJcasTehbmrgnTwF0="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"11122"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022gIDkXBkhJoHbaYBLgsJguiQJTGzJcasTehbmrgnTwF0=\u0022"},{"Name":"Last-Modified","Value":"Mon, 15 Sep 2025 15:39:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/indexstyle.gs84yqfyu2.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\indexstyle.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"gs84yqfyu2"},{"Name":"integrity","Value":"sha256-gIDkXBkhJoHbaYBLgsJguiQJTGzJcasTehbmrgnTwF0="},{"Name":"label","Value":"_content/AgriWiki_Project/css/indexstyle.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"11122"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022gIDkXBkhJoHbaYBLgsJguiQJTGzJcasTehbmrgnTwF0=\u0022"},{"Name":"Last-Modified","Value":"Mon, 15 Sep 2025 15:39:11 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/loginstyle.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\loginstyle.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-77BTWmKUgX3UlClN\u002BXEgu\u002B6xKNkH\u002B4NqWirwgoI52Wg="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4766"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u002277BTWmKUgX3UlClN\u002BXEgu\u002B6xKNkH\u002B4NqWirwgoI52Wg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 14 Sep 2025 10:06:58 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-43XdZ4I34rtHbEsdp8hPri8kpPt67H7PXwAYbR/qIrM="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"4790"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u002243XdZ4I34rtHbEsdp8hPri8kpPt67H7PXwAYbR/qIrM=\u0022"},{"Name":"Last-Modified","Value":"Mon, 15 Sep 2025 14:03:40 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/loginstyle.lbfi9qyvml.css">
+    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/loginstyle.n71vukb4zk.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\loginstyle.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"lbfi9qyvml"},{"Name":"integrity","Value":"sha256-77BTWmKUgX3UlClN\u002BXEgu\u002B6xKNkH\u002B4NqWirwgoI52Wg="},{"Name":"label","Value":"_content/AgriWiki_Project/css/loginstyle.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4766"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u002277BTWmKUgX3UlClN\u002BXEgu\u002B6xKNkH\u002B4NqWirwgoI52Wg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 14 Sep 2025 10:06:58 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"n71vukb4zk"},{"Name":"integrity","Value":"sha256-43XdZ4I34rtHbEsdp8hPri8kpPt67H7PXwAYbR/qIrM="},{"Name":"label","Value":"_content/AgriWiki_Project/css/loginstyle.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"4790"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u002243XdZ4I34rtHbEsdp8hPri8kpPt67H7PXwAYbR/qIrM=\u0022"},{"Name":"Last-Modified","Value":"Mon, 15 Sep 2025 14:03:40 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-l6ogP5F/om5wU3r9NMVoBczgPZAYYoUhWRssuxXjdpg="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6380"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022l6ogP5F/om5wU3r9NMVoBczgPZAYYoUhWRssuxXjdpg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 14 Sep 2025 12:03:22 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-rgr4FP3mS0mllAgbq997y4tDzXPBnEnIMxNOQWSHOys="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"6548"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022rgr4FP3mS0mllAgbq997y4tDzXPBnEnIMxNOQWSHOys=\u0022"},{"Name":"Last-Modified","Value":"Mon, 15 Sep 2025 15:39:13 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
-    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/site.vyza6ghvf3.css">
+    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/site.yc0usrjq5w.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
-      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"vyza6ghvf3"},{"Name":"integrity","Value":"sha256-l6ogP5F/om5wU3r9NMVoBczgPZAYYoUhWRssuxXjdpg="},{"Name":"label","Value":"_content/AgriWiki_Project/css/site.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6380"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022l6ogP5F/om5wU3r9NMVoBczgPZAYYoUhWRssuxXjdpg=\u0022"},{"Name":"Last-Modified","Value":"Sun, 14 Sep 2025 12:03:22 GMT"}]]]></ResponseHeaders>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"yc0usrjq5w"},{"Name":"integrity","Value":"sha256-rgr4FP3mS0mllAgbq997y4tDzXPBnEnIMxNOQWSHOys="},{"Name":"label","Value":"_content/AgriWiki_Project/css/site.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"6548"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022rgr4FP3mS0mllAgbq997y4tDzXPBnEnIMxNOQWSHOys=\u0022"},{"Name":"Last-Modified","Value":"Mon, 15 Sep 2025 15:39:13 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/favicon.61n19gt1b8.ico">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\favicon.ico'))</AssetFile>

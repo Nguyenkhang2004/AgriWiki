@@ -195,5 +195,7 @@ E:\FPT\OJT\AgriWiki_Project\bin\Debug\net9.0\zh-Hant\Microsoft.CodeAnalysis.Work
 E:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\AgriWiki_Project.csproj.AssemblyReference.cache
 E:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\AgriWiki.D19F570E.Up2Date
 e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\727gnllo68-ufvq0nx27k.gz
-e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\jnv81jtist-lbfi9qyvml.gz
-e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\9vyl4spwgl-vyza6ghvf3.gz
+e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\AgriWiki_Project.sourcelink.json
+e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\jnv81jtist-n71vukb4zk.gz
+e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\31congef2n-gs84yqfyu2.gz
+e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\9vyl4spwgl-yc0usrjq5w.gz

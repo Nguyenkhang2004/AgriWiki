@@ -16,13 +16,26 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+:root {
+  --primary: #4CAF50;
+  --primary-dark: #2e7d32;
+  --primary-light: #81c784;
+  --accent: #66bb6a;
+  --bg-light: #f1f8e9;
+  --bg-white: #ffffff;
+  --text-dark: #2c3e50;
+  --text-light: #666;
+  --border: #e8f5e8;
+  --shadow: rgba(76, 175, 80, 0.15);
+  
+}
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
   font-family: 'Inter', sans-serif;
   background: linear-gradient(135deg, #f8fffe 0%, #e8f5e8 100%);
 }
@@ -54,10 +67,7 @@ body {
 
 
 .main-container {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
+  min-height: 100vh;
 }
 
 /* Header style */
@@ -67,7 +77,6 @@ body {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
   padding: 0.75rem 0 !important;
   transition: all 0.3s ease;
-  margin-bottom: 16px;
 }
 
 .navbar-brand {
