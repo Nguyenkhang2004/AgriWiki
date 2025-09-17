@@ -4,13 +4,13 @@
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\AgriWiki_Project.831yojujc0.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"831yojujc0"},{"Name":"integrity","Value":"sha256-BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc="},{"Name":"label","Value":"_content/AgriWiki_Project/AgriWiki_Project.bundle.scp.css"}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 10 Sep 2025 14:17:44 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 17 Sep 2025 13:55:32 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/AgriWiki_Project.bundle.scp.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\AgriWiki_Project.831yojujc0.bundle.scp.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc="}]]]></EndpointProperties>
-      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 10 Sep 2025 14:17:44 GMT"}]]]></ResponseHeaders>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"1134"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022BB4YmeOIdLREGyiQk7n9JoiHaZNAOT5bLGkoKw8EpGc=\u0022"},{"Name":"Last-Modified","Value":"Wed, 17 Sep 2025 13:55:32 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/indexstyle.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\indexstyle.css'))</AssetFile>

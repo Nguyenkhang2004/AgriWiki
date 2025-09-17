@@ -14,6 +14,35 @@
 </head>
 
 <body>
+    <div class="toast-container position-fixed top-0 end-0 p-3">
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="toast align-items-center text-bg-danger border-0 show" role="alert" aria-live="assertive"
+                aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        @TempData["ErrorMessage"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        }
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="toast align-items-center text-bg-success border-0 show" role="alert" aria-live="assertive"
+                aria-atomic="true">
+                <div class="d-flex">
+                    <div class="toast-body">
+                        @TempData["SuccessMessage"]
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+                        aria-label="Close"></button>
+                </div>
+            </div>
+        }
+    </div>
     <header>
         <nav class="navbar navbar-expand-sm navbar-light">
             <div class="container">
@@ -54,7 +83,6 @@
         <main role="main" class="pb-3" style="padding-bottom: 0px !important;">
             @RenderBody()
         </main>
-        @* @RenderBody() *@
     </div>
 
     <footer class="footer">

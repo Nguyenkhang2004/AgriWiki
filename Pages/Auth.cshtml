@@ -6,7 +6,7 @@
 
 <!DOCTYPE html>
 <html lang="en">
-
+ 
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +14,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/css/loginstyle.css">
 </head>
-
+ 
 <body>
     <div class="login-container">
         <div class="header">
@@ -24,110 +24,112 @@
             </div>
             <p class="subtitle">Hệ thống tra cứu thông tin cây trồng</p>
         </div>
-
+ 
         <div class="form-tabs">
-            <button type="button" class="tab active" data-tab="signin">Đăng Nhập</button>
-            <button type="button" class="tab" data-tab="signup">Đăng Ký</button>
+            <button type="button" class="tab @(!Model.isSignupActive ? "active" : "")" data-tab="signin">Đăng Nhập</button>
+            <button type="button" class="tab @(Model.isSignupActive ? "active" : "")" data-tab="signup">Đăng Ký</button>
         </div>
-
+ 
         <div class="form-content">
             <!-- Form Đăng Nhập -->
-            <form method="post" asp-page-handler="Signin" class="form active" id="signin-form">
+            <form method="post" asp-page-handler="Signin" class="form @(!Model.isSignupActive ? "active" : "")" id="signin-form">
                 <div class="form-group">
-                    <label asp-for="signinInput.Email"></label>
+                    <label asp-for="SigninInput.Email"></label>
                     <div class="input-wrapper">
                         <i class="fas fa-envelope"></i>
-                        <input asp-for="signinInput.Email" class="form-control" placeholder="Enter email" required/>
+                        <input asp-for="SigninInput.Email" class="form-control" placeholder="Enter email" required/>
                     </div>
-                    <span asp-validation-for="signinInput.Email" class="text-danger"></span>
+                    <span asp-validation-for="SigninInput.Email" class="text-danger"></span>
                 </div>
-
+ 
                 <div class="form-group">
-                    <label asp-for="signinInput.Password"></label>
+                    <label asp-for="SigninInput.Password"></label>
                     <div class="input-wrapper" style="position: relative;">
                         <i class="fas fa-lock"></i>
-                        <input asp-for="signinInput.Password" class="form-control" id="signinPassword" placeholder="Enter password" required/>
+                        <input asp-for="SigninInput.Password" class="form-control" id="signinPassword"
+                            placeholder="Enter password" required />
                         <i class="fas fa-eye toggle-password" data-target="signinPassword"></i>
                     </div>
-                    <span asp-validation-for="signinInput.Password" class="text-danger"></span>
+                    <span asp-validation-for="SigninInput.Password" class="text-danger"></span>
                 </div>
-
+ 
                 <div class="forgot-password">
                     <a href="#">Quên mật khẩu?</a>
                 </div>
-
+ 
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-sign-in-alt" style="margin-right: 8px;"></i>
                     Đăng Nhập
                 </button>
             </form>
-
+ 
             <!-- Form Đăng Ký -->
-            <form method="post" asp-page-handler="Signup" class="form" id="signup-form">
+            <form method="post" asp-page-handler="Signup" class="form @(Model.isSignupActive ? "active" : "")" id="signup-form">
+                <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
-                    <label asp-for="signupInput.FullName"></label>
+                    <label asp-for="SignupInput.FullName"></label>
                     <div class="input-wrapper">
                         <i class="fas fa-user"></i>
-                        <input asp-for="signupInput.FullName" class="form-control" placeholder="Enter full name" required/>
+                        <input asp-for="SignupInput.FullName" class="form-control" placeholder="Enter full name"
+                            required />
                     </div>
-                    <span asp-validation-for="signupInput.FullName" class="text-danger"></span>
+                    <span asp-validation-for="SignupInput.FullName" class="text-danger"></span>
                 </div>
-
+ 
                 <div class="form-group">
-                    <label asp-for="signupInput.Email"></label>
+                    <label asp-for="SignupInput.Email"></label>
                     <div class="input-wrapper">
                         <i class="fas fa-envelope"></i>
-                        <input asp-for="signupInput.Email" class="form-control" placeholder="Enter email" required/>
+                        <input asp-for="SignupInput.Email" class="form-control" placeholder="Enter email" required />
                     </div>
-                    <span asp-validation-for="signupInput.Email" class="text-danger"></span>
-                </div>
-
+                    <span asp-validation-for="SignupInput.Email" class="text-danger"></span>
+                </div>    
+ 
                 <div class="form-group">
-                    <label asp-for="signupInput.Password"></label>
+                    <label asp-for="SignupInput.Password"></label>
                     <div class="input-wrapper" style="position: relative;">
                         <i class="fas fa-lock"></i>
-                        <input asp-for="signupInput.Password" class="form-control" id="signupPassword" placeholder="Enter password" required/>
+                        <input asp-for="SignupInput.Password" class="form-control" id="signupPassword"
+                            placeholder="Enter password" required />
                         <i class="fas fa-eye toggle-password" data-target="signupPassword"></i>
                     </div>
-                    <span asp-validation-for="signupInput.Password" class="text-danger"></span>
+                    <span asp-validation-for="SignupInput.Password" class="text-danger"></span>
                 </div>
-
+ 
                 <div class="form-group">
-                    <label asp-for="signupInput.ConfirmPassword"></label>
+                    <label asp-for="SignupInput.ConfirmPassword"></label>
                     <div class="input-wrapper" style="position: relative;">
                         <i class="fas fa-lock"></i>
-                        <input asp-for="signupInput.ConfirmPassword" class="form-control" id="confirmPassword" placeholder="Enter confirm password" required/>
+                        <input asp-for="SignupInput.ConfirmPassword" class="form-control" id="confirmPassword"
+                            placeholder="Enter confirm password" required />
                         <i class="fas fa-eye toggle-password" data-target="confirmPassword"></i>
                     </div>
-                    <span asp-validation-for="signupInput.ConfirmPassword" class="text-danger"></span>
+                    <span asp-validation-for="SignupInput.ConfirmPassword" class="text-danger"></span>
                 </div>
-
+ 
                 <button type="submit" class="submit-btn">
                     <i class="fas fa-user-plus" style="margin-right: 8px;"></i>
                     Đăng Ký
                 </button>
             </form>
         </div>
-
+ 
         <div class="login-footer">
             <p>Bằng cách đăng nhập, bạn đồng ý với <a href="#">Điều khoản sử dụng</a> và <a href="#">Chính sách bảo
                     mật</a> của AgriWiki</p>
         </div>
-
-        @if (!string.IsNullOrEmpty(Model.Message))
-        {
-            <div class="alert alert-info mt-3">@Model.Message</div>
-        }
     </div>
-
+ 
     @section Scripts {
         <partial name="_ValidationScriptsPartial" />
     }
     <script>
+        var isSignupActive = @(Model.isSignupActive ? "true" : "false");
+        console.log(isSignupActive)
         document.querySelectorAll(".toggle-password").forEach(icon => {
             icon.addEventListener("click", function () {
                 const input = document.getElementById(this.dataset.target);
-
+ 
                 if (input.type === "password") {
                     input.type = "text";
                     this.classList.remove("fa-eye");
@@ -139,9 +141,12 @@
                 }
             });
         });
+ 
+        window.addEventListener('DOMContentLoaded', () => {
+            const successMessage = '@Html.Raw(TempData["Notification"])';
+            console.log(successMessage);
+        });
     </script>
     <script src="~/js/login.js"></script>
-
 </body>
-
 </html>
