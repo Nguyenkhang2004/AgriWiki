@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\AgriWiki_Project.831yojujc0.bundle.scp.css"
     },
     {
+      "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\dashboard.css",
+      "PackagePath": "staticwebassets\\css\\dashboard.css"
+    },
+    {
       "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\indexstyle.css",
       "PackagePath": "staticwebassets\\css\\indexstyle.css"
     },

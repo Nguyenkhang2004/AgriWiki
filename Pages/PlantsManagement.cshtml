@@ -1,0 +1,789 @@
+@page
+@model AgriWiki_Project.Pages.PlantsManagement
+@{
+    Layout = "Dashboard";
+    ViewData["Title"] = "PlantsManagement";
+}
+
+<div class="plants-container">
+    <!-- Page Header -->
+    <div class="page-header">
+        <h2><i class="fas fa-seedling me-2"></i>Quản lý Cây Trồng</h2>
+        <p>Quản lý thông tin các loại cây trồng trong hệ thống</p>
+    </div>
+
+    <!-- Controls Section -->
+    <div class="controls-section">
+        <div class="search-filters">
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" class="form-control" placeholder="Tìm kiếm theo tên cây..." id="searchInput">
+            </div>
+            <select class="filter-select" id="categoryFilter">
+                <option value="">Tất cả danh mục</option>
+                <option value="Rau ăn lá">Rau ăn lá</option>
+                <option value="Rau ăn quả">Rau ăn quả</option>
+                <option value="Rau ăn củ">Rau ăn củ</option>
+                <option value="Gia vị">Gia vị</option>
+                <option value="Cây thuốc">Cây thuốc</option>
+            </select>
+        </div>
+        <button class="add-btn" data-bs-toggle="modal" data-bs-target="#plantModal">
+            <i class="fas fa-plus"></i>
+            Thêm cây trồng mới
+        </button>
+    </div>
+
+    <!-- Plants Table -->
+    <div class="plants-table">
+        <div class="table-header">
+            <h5><i class="fas fa-list me-2"></i>Danh sách cây trồng</h5>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover" id="plantsTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Ảnh</th>
+                        <th>Tên cây</th>
+                        <th>Tên khoa học</th>
+                        <th>Danh mục</th>
+                        <th>Người tạo</th>
+                        <th>Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="plantsTableBody">
+                    <tr data-category="Rau ăn quả">
+                        <td>1</td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop"
+                                alt="Cà chua" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                        </td>
+                        <td><strong>Cà chua</strong></td>
+                        <td><em>Solanum lycopersicum</em></td>
+                        <td><span class="badge bg-warning">Rau ăn quả</span></td>
+                        <td>Nguyễn Văn A</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn-action btn-info" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-confirmed" title="Xác nhận">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-danger" title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-category="Rau ăn lá">
+                        <td>2</td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop"
+                                alt="Cải bó xôi"
+                                style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                        </td>
+                        <td><strong>Cải bó xôi</strong></td>
+                        <td><em>Spinacia oleracea</em></td>
+                        <td><span class="badge bg-success">Rau ăn lá</span></td>
+                        <td>Trần Thị B</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn-action btn-info" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-confirmed" title="Xác nhận">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-danger" title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-category="Rau ăn củ">
+                        <td>3</td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&h=300&fit=crop"
+                                alt="Cà rốt" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                        </td>
+                        <td><strong>Cà rốt</strong></td>
+                        <td><em>Daucus carota</em></td>
+                        <td><span class="badge bg-info">Rau ăn củ</span></td>
+                        <td>Lê Văn C</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn-action btn-info" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-confirmed" title="Xác nhận">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-danger" title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-category="Rau ăn lá">
+                        <td>4</td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1573246123716-6b1782bfc499?w=400&h=300&fit=crop"
+                                alt="Rau muống"
+                                style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                        </td>
+                        <td><strong>Rau muống</strong></td>
+                        <td><em>Ipomoea aquatica</em></td>
+                        <td><span class="badge bg-success">Rau ăn lá</span></td>
+                        <td>Phạm Thị D</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn-action btn-info" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-confirmed" title="Xác nhận">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-danger" title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-category="Gia vị">
+                        <td>5</td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1583638395583-96b496ee1200?w=400&h=300&fit=crop"
+                                alt="Ớt" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                        </td>
+                        <td><strong>Ớt</strong></td>
+                        <td><em>Capsicum annuum</em></td>
+                        <td><span class="badge bg-secondary">Gia vị</span></td>
+                        <td>Hoàng Văn E</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn-action btn-info" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-confirmed" title="Xác nhận">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-danger" title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-category="Rau ăn quả">
+                        <td>6</td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop"
+                                alt="Bí đao" style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                        </td>
+                        <td><strong>Bí đao</strong></td>
+                        <td><em>Benincasa hispida</em></td>
+                        <td><span class="badge bg-warning">Rau ăn quả</span></td>
+                        <td>Nguyễn Thị F</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn-action btn-info" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-confirmed" title="Xác nhận">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-danger" title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr data-category="Rau ăn củ">
+                        <td>7</td>
+                        <td>
+                            <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop"
+                                alt="Khoai tây"
+                                style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+                        </td>
+                        <td><strong>Khoai tây</strong></td>
+                        <td><em>Solanum tuberosum</em></td>
+                        <td><span class="badge bg-info">Rau ăn củ</span></td>
+                        <td>Vũ Văn G</td>
+                        <td>
+                            <div class="btn-group">
+                                <button class="btn-action btn-info" title="Xem chi tiết">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="btn-action btn-confirmed" title="Xác nhận">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="btn-action btn-danger" title="Xóa">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-container">
+            <div class="pagination-info">
+                Hiển thị <span id="showingStart">1</span> - <span id="showingEnd">10</span> trên tổng số <span
+                    id="totalItems">10</span> cây trồng
+            </div>
+            <nav>
+                <ul class="pagination pagination-sm mb-0">
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="fas fa-chevron-left"></i></span>
+                    </li>
+                    <li class="page-item active">
+                        <span class="page-link">1</span>
+                    </li>
+                    <li class="page-item disabled">
+                        <span class="page-link"><i class="fas fa-chevron-right"></i></span>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+<!-- Add Plant Modal -->
+<div class="modal fade" id="plantModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">
+                    <i class="fas fa-seedling me-2"></i>Thêm cây trồng mới
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <form id="plantForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="plantName" class="form-label">Tên cây trồng</label>
+                                <input type="text" class="form-control" id="plantName" required>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="scientificName" class="form-label">Tên khoa học</label>
+                                <input type="text" class="form-control" id="scientificName" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="category" class="form-label">Danh mục</label>
+                                <select class="form-control" id="category" required>
+                                    <option value="">Chọn danh mục</option>
+                                    <option value="Rau ăn lá">Rau ăn lá</option>
+                                    <option value="Rau ăn quả">Rau ăn quả</option>
+                                    <option value="Rau ăn củ">Rau ăn củ</option>
+                                    <option value="Gia vị">Gia vị</option>
+                                    <option value="Cây thuốc">Cây thuốc</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="mb-3">
+                                <label for="plantImage" class="form-label">Ảnh cây trồng</label>
+                                <input type="file" class="form-control" id="plantImage" accept="image/*">
+                                <small class="text-muted">Chỉ chấp nhận file ảnh (JPG, PNG, GIF)</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Mô tả</label>
+                        <textarea class="form-control" id="description" rows="4"
+                            placeholder="Nhập mô tả về cây trồng..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                <button type="button" class="btn btn-primary" onclick="alert('Thêm cây trồng thành công!');"
+                    data-bs-dismiss="modal">
+                    <i class="fas fa-save me-2"></i>Lưu
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- View Plant Detail Modals -->
+<div class="modal fade" id="viewPlantModal1" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title"><i class="fas fa-eye me-2"></i>Chi tiết cây trồng</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <img src="https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop"
+                            alt="Cà chua" class="img-fluid rounded"
+                            style="width: 100%; max-height: 300px; object-fit: cover;">
+                    </div>
+                    <div class="col-md-8">
+                        <h4>Cà chua</h4>
+                        <p><strong>Tên khoa học:</strong> <em>Solanum lycopersicum</em></p>
+                        <p><strong>Danh mục:</strong> <span class="badge bg-warning">Rau ăn quả</span></p>
+                        <p><strong>Người tạo:</strong> Nguyễn Văn A</p>
+                        <p><strong>Ngày tạo:</strong> 15 tháng 1, 2024</p>
+                        <p><strong>Mô tả:</strong></p>
+                        <div class="border p-3 rounded bg-light">
+                            Cà chua là một loại cây thuộc họ cà, có nguồn gốc từ Nam Mỹ. Quả cà chua rất giàu vitamin C
+                            và lycopene.
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@* <script>
+    // Dữ liệu mẫu cây trồng
+    let plants = [
+        {
+            id: 1,
+            name: "Cà chua",
+            scientificName: "Solanum lycopersicum",
+            category: "Rau ăn quả",
+            creator: "Nguyễn Văn A",
+            image: "https://images.unsplash.com/photo-1546094096-0df4bcaaa337?w=400&h=300&fit=crop",
+            description: "Cà chua là một loại cây thuộc họ cà, có nguồn gốc từ Nam Mỹ. Quả cà chua rất giàu vitamin C và lycopene.",
+            createdDate: "2024-01-15"
+        },
+        {
+            id: 2,
+            name: "Cải bó xôi",
+            scientificName: "Spinacia oleracea",
+            category: "Rau ăn lá",
+            creator: "Trần Thị B",
+            image: "https://images.unsplash.com/photo-1576045057995-568f588f82fb?w=400&h=300&fit=crop",
+            description: "Cải bó xôi là loại rau lá xanh giàu sắt, vitamin K và acid folic, rất tốt cho sức khỏe.",
+            createdDate: "2024-01-10"
+        },
+        {
+            id: 3,
+            name: "Cà rốt",
+            scientificName: "Daucus carota",
+            category: "Rau ăn củ",
+            creator: "Lê Văn C",
+            image: "https://images.unsplash.com/photo-1445282768818-728615cc910a?w=400&h=300&fit=crop",
+            description: "Cà rốt là loại củ giàu beta-carotene, vitamin A, rất tốt cho mắt và hệ miễn dịch.",
+            createdDate: "2024-01-08"
+        },
+        {
+            id: 4,
+            name: "Rau muống",
+            scientificName: "Ipomoea aquatica",
+            category: "Rau ăn lá",
+            creator: "Phạm Thị D",
+            image: "https://images.unsplash.com/photo-1573246123716-6b1782bfc499?w=400&h=300&fit=crop",
+            description: "Rau muống là loại rau lá xanh phổ biến tại Việt Nam, giàu chất xơ và các vitamin thiết yếu.",
+            createdDate: "2024-01-12"
+        },
+        {
+            id: 5,
+            name: "Ớt",
+            scientificName: "Capsicum annuum",
+            category: "Gia vị",
+            creator: "Hoàng Văn E",
+            image: "https://images.unsplash.com/photo-1583638395583-96b496ee1200?w=400&h=300&fit=crop",
+            description: "Ớt là loại gia vị cay nồng, chứa nhiều vitamin C và capsaicin có tác dụng giảm đau.",
+            createdDate: "2024-01-18"
+        },
+        {
+            id: 6,
+            name: "Bí đao",
+            scientificName: "Benincasa hispida",
+            category: "Rau ăn quả",
+            creator: "Nguyễn Thị F",
+            image: "https://images.unsplash.com/photo-1571771894821-ce9b6c11b08e?w=400&h=300&fit=crop",
+            description: "Bí đao là loại quả to, thịt trắng, thường được dùng để nấu canh và làm mứt.",
+            createdDate: "2024-01-20"
+        },
+        {
+            id: 7,
+            name: "Khoai tây",
+            scientificName: "Solanum tuberosum",
+            category: "Rau ăn củ",
+            creator: "Vũ Văn G",
+            image: "https://images.unsplash.com/photo-1518977676601-b53f82aba655?w=400&h=300&fit=crop",
+            description: "Khoai tây là loại củ giàu tinh bột, vitamin C và kali, là thực phẩm chủ yếu ở nhiều nước.",
+            createdDate: "2024-01-22"
+        },
+        {
+            id: 8,
+            name: "Húng quế",
+            scientificName: "Ocimum basilicum",
+            category: "Gia vị",
+            creator: "Đặng Thị H",
+            image: "https://images.unsplash.com/photo-1618164435735-413d3b066c9a?w=400&h=300&fit=crop",
+            description: "Húng quế là loại thảo mộc thơm, được sử dụng rộng rãi trong ẩm thực và y học cổ truyền.",
+            createdDate: "2024-01-25"
+        },
+        {
+            id: 9,
+            name: "Nghệ",
+            scientificName: "Curcuma longa",
+            category: "Cây thuốc",
+            creator: "Bùi Văn I",
+            image: "https://images.unsplash.com/photo-1615485925600-97237c4fc1ec?w=400&h=300&fit=crop",
+            description: "Nghệ là loại cây thuốc quý, có tác dụng chống viêm, kháng khuẩn và tăng cường sức khỏe.",
+            createdDate: "2024-01-28"
+        },
+        {
+            id: 10,
+            name: "Dưa leo",
+            scientificName: "Cucumis sativus",
+            category: "Rau ăn quả",
+            creator: "Lý Thị J",
+            image: "https://images.unsplash.com/photo-1449300079323-02e209d9d3a6?w=400&h=300&fit=crop",
+            description: "Dưa leo là loại quả nhiều nước, ít calo, thường được dùng trong salad và các món ăn thanh mát.",
+            createdDate: "2024-02-01"
+        },
+        {
+            id: 11,
+            name: "Hành lá",
+            scientificName: "Allium fistulosum",
+            category: "Gia vị",
+            creator: "Trịnh Văn K",
+            image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
+            description: "Hành lá là loại gia vị thơm, được sử dụng phổ biến trong các món ăn Việt Nam.",
+            createdDate: "2024-02-03"
+        },
+        {
+            id: 12,
+            name: "Rau cải",
+            scientificName: "Brassica rapa",
+            category: "Rau ăn lá",
+            creator: "Cao Thị L",
+            image: "https://images.unsplash.com/photo-1540420773420-3366772f4999?w=400&h=300&fit=crop",
+            description: "Rau cải là loại rau lá xanh giàu dinh dưỡng, dễ trồng và phổ biến trong ẩm thực Á Đông.",
+            createdDate: "2024-02-05"
+        }
+    ];
+
+    // Biến toàn cục
+    let currentPage = 1;
+    let itemsPerPage = 10;
+    let filteredPlants = [...plants];
+    let editingPlantId = null;
+
+    // Khởi tạo khi trang được tải
+    document.addEventListener('DOMContentLoaded', function () {
+        displayPlants();
+        updatePagination();
+    });
+
+    // Hiển thị danh sách cây trồng
+    function displayPlants() {
+        const tbody = document.getElementById('plantsTableBody');
+        const startIndex = (currentPage - 1) * itemsPerPage;
+        const endIndex = startIndex + itemsPerPage;
+        const plantsToShow = filteredPlants.slice(startIndex, endIndex);
+
+        tbody.innerHTML = '';
+
+        plantsToShow.forEach(plant => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+            <td>${plant.id}</td>
+            <td>
+                <img src="${plant.image}" alt="${plant.name}" 
+                     style="width: 50px; height: 50px; object-fit: cover; border-radius: 8px;">
+            </td>
+            <td><strong>${plant.name}</strong></td>
+            <td><em>${plant.scientificName}</em></td>
+            <td>
+                <span class="badge bg-${getCategoryColor(plant.category)}">${plant.category}</span>
+            </td>
+            <td>${plant.creator}</td>
+            <td>
+                <div class="btn-group" role="group">
+                    <button class="btn btn-info btn-sm" onclick="viewPlant(${plant.id})" title="Xem chi tiết">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="btn btn-warning btn-sm" onclick="editPlant(${plant.id})" title="Chỉnh sửa">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="btn btn-danger btn-sm" onclick="deletePlant(${plant.id})" title="Xóa">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </td>
+        `;
+            tbody.appendChild(row);
+        });
+
+        updatePaginationInfo();
+    }
+
+    // Lấy màu badge cho danh mục
+    function getCategoryColor(category) {
+        const colors = {
+            'Rau ăn lá': 'success',
+            'Rau ăn quả': 'warning',
+            'Rau ăn củ': 'info',
+            'Gia vị': 'secondary',
+            'Cây thuốc': 'primary'
+        };
+        return colors[category] || 'secondary';
+    }
+
+    // Tìm kiếm cây trồng
+    function searchPlants() {
+        const searchTerm = document.getElementById('searchInput').value.toLowerCase();
+        const categoryFilter = document.getElementById('categoryFilter').value;
+
+        filteredPlants = plants.filter(plant => {
+            const matchesSearch = plant.name.toLowerCase().includes(searchTerm) ||
+                plant.scientificName.toLowerCase().includes(searchTerm);
+            const matchesCategory = !categoryFilter || plant.category === categoryFilter;
+            return matchesSearch && matchesCategory;
+        });
+
+        currentPage = 1;
+        displayPlants();
+        updatePagination();
+    }
+
+    // Lọc theo danh mục
+    function filterByCategory() {
+        searchPlants();
+    }
+
+    // Hiển thị modal thêm cây trồng
+    function showAddPlantModal() {
+        editingPlantId = null;
+        document.getElementById('modalTitle').innerHTML = '<i class="fas fa-seedling me-2"></i>Thêm cây trồng mới';
+        document.getElementById('plantForm').reset();
+        document.getElementById('plantId').value = '';
+
+        const modal = new bootstrap.Modal(document.getElementById('plantModal'));
+        modal.show();
+    }
+
+    // Chỉnh sửa cây trồng
+    function editPlant(id) {
+        const plant = plants.find(p => p.id === id);
+        if (!plant) return;
+
+        editingPlantId = id;
+        document.getElementById('modalTitle').innerHTML = '<i class="fas fa-edit me-2"></i>Chỉnh sửa cây trồng';
+        document.getElementById('plantId').value = plant.id;
+        document.getElementById('plantName').value = plant.name;
+        document.getElementById('scientificName').value = plant.scientificName;
+        document.getElementById('category').value = plant.category;
+        document.getElementById('description').value = plant.description;
+
+        const modal = new bootstrap.Modal(document.getElementById('plantModal'));
+        modal.show();
+    }
+
+    // Lưu cây trồng
+    function savePlant() {
+        const form = document.getElementById('plantForm');
+        if (!form.checkValidity()) {
+            form.reportValidity();
+            return;
+        }
+
+        const plantData = {
+            name: document.getElementById('plantName').value,
+            scientificName: document.getElementById('scientificName').value,
+            category: document.getElementById('category').value,
+            description: document.getElementById('description').value,
+            image: document.getElementById('plantImage').files[0]
+        };
+
+        if (editingPlantId) {
+            // Cập nhật cây trồng
+            const plantIndex = plants.findIndex(p => p.id === editingPlantId);
+            if (plantIndex !== -1) {
+                plants[plantIndex] = {
+                    ...plants[plantIndex],
+                    ...plantData,
+                    image: plantData.image ? URL.createObjectURL(plantData.image) : plants[plantIndex].image
+                };
+            }
+        } else {
+            // Thêm cây trồng mới
+            const newPlant = {
+                id: Math.max(...plants.map(p => p.id)) + 1,
+                ...plantData,
+                creator: "Người dùng hiện tại",
+                createdDate: new Date().toISOString().split('T')[0],
+                image: plantData.image ? URL.createObjectURL(plantData.image) : "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop"
+            };
+            plants.push(newPlant);
+        }
+
+        // Cập nhật danh sách hiển thị
+        searchPlants();
+
+        // Đóng modal
+        const modal = bootstrap.Modal.getInstance(document.getElementById('plantModal'));
+        modal.hide();
+
+        // Thông báo thành công
+        alert(editingPlantId ? 'Cập nhật cây trồng thành công!' : 'Thêm cây trồng thành công!');
+    }
+
+    // Xem chi tiết cây trồng
+    function viewPlant(id) {
+        const plant = plants.find(p => p.id === id);
+        if (!plant) return;
+
+        const content = `
+        <div class="row">
+            <div class="col-md-4">
+                <img src="${plant.image}" alt="${plant.name}" 
+                     class="img-fluid rounded" style="width: 100%; max-height: 300px; object-fit: cover;">
+            </div>
+            <div class="col-md-8">
+                <h4>${plant.name}</h4>
+                <p><strong>Tên khoa học:</strong> <em>${plant.scientificName}</em></p>
+                <p><strong>Danh mục:</strong> 
+                   <span class="badge bg-${getCategoryColor(plant.category)}">${plant.category}</span>
+                </p>
+                <p><strong>Người tạo:</strong> ${plant.creator}</p>
+                <p><strong>Ngày tạo:</strong> ${formatDate(plant.createdDate)}</p>
+                <p><strong>Mô tả:</strong></p>
+                <div class="border p-3 rounded bg-light">
+                    ${plant.description}
+                </div>
+            </div>
+        </div>
+    `;
+
+        document.getElementById('plantDetailContent').innerHTML = content;
+        const modal = new bootstrap.Modal(document.getElementById('viewPlantModal'));
+        modal.show();
+    }
+
+    // Xóa cây trồng
+    function deletePlant(id) {
+        const plant = plants.find(p => p.id === id);
+        if (!plant) return;
+
+        if (confirm(`Bạn có chắc chắn muốn xóa cây trồng "${plant.name}"?`)) {
+            plants = plants.filter(p => p.id !== id);
+            searchPlants();
+            alert('Xóa cây trồng thành công!');
+        }
+    }
+
+    // Cập nhật phân trang
+    function updatePagination() {
+        const totalPages = Math.ceil(filteredPlants.length / itemsPerPage);
+        const pagination = document.getElementById('pagination');
+
+        pagination.innerHTML = '';
+
+        // Nút Previous
+        const prevLi = document.createElement('li');
+        prevLi.className = `page-item ${currentPage === 1 ? 'disabled' : ''}`;
+        prevLi.innerHTML = `
+        <a class="page-link" href="#" onclick="changePage(${currentPage - 1})">
+            <i class="fas fa-chevron-left"></i>
+        </a>
+    `;
+        pagination.appendChild(prevLi);
+
+        // Các số trang
+        const startPage = Math.max(1, currentPage - 2);
+        const endPage = Math.min(totalPages, currentPage + 2);
+
+        if (startPage > 1) {
+            const firstLi = document.createElement('li');
+            firstLi.className = 'page-item';
+            firstLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(1)">1</a>`;
+            pagination.appendChild(firstLi);
+
+            if (startPage > 2) {
+                const dotsLi = document.createElement('li');
+                dotsLi.className = 'page-item disabled';
+                dotsLi.innerHTML = `<span class="page-link">...</span>`;
+                pagination.appendChild(dotsLi);
+            }
+        }
+
+        for (let i = startPage; i <= endPage; i++) {
+            const li = document.createElement('li');
+            li.className = `page-item ${i === currentPage ? 'active' : ''}`;
+            li.innerHTML = `<a class="page-link" href="#" onclick="changePage(${i})">${i}</a>`;
+            pagination.appendChild(li);
+        }
+
+        if (endPage < totalPages) {
+            if (endPage < totalPages - 1) {
+                const dotsLi = document.createElement('li');
+                dotsLi.className = 'page-item disabled';
+                dotsLi.innerHTML = `<span class="page-link">...</span>`;
+                pagination.appendChild(dotsLi);
+            }
+
+            const lastLi = document.createElement('li');
+            lastLi.className = 'page-item';
+            lastLi.innerHTML = `<a class="page-link" href="#" onclick="changePage(${totalPages})">${totalPages}</a>`;
+            pagination.appendChild(lastLi);
+        }
+
+        // Nút Next
+        const nextLi = document.createElement('li');
+        nextLi.className = `page-item ${currentPage === totalPages ? 'disabled' : ''}`;
+        nextLi.innerHTML = `
+        <a class="page-link" href="#" onclick="changePage(${currentPage + 1})">
+            <i class="fas fa-chevron-right"></i>
+        </a>
+    `;
+        pagination.appendChild(nextLi);
+    }
+
+    // Thay đổi trang
+    function changePage(page) {
+        const totalPages = Math.ceil(filteredPlants.length / itemsPerPage);
+        if (page >= 1 && page <= totalPages) {
+            currentPage = page;
+            displayPlants();
+            updatePagination();
+        }
+    }
+
+    // Cập nhật thông tin phân trang
+    function updatePaginationInfo() {
+        const startItem = (currentPage - 1) * itemsPerPage + 1;
+        const endItem = Math.min(currentPage * itemsPerPage, filteredPlants.length);
+        const totalItems = filteredPlants.length;
+
+        document.getElementById('showingStart').textContent = totalItems === 0 ? 0 : startItem;
+        document.getElementById('showingEnd').textContent = endItem;
+        document.getElementById('totalItems').textContent = totalItems;
+    }
+
+    // Định dạng ngày tháng
+    function formatDate(dateString) {
+        const date = new Date(dateString);
+        return date.toLocaleDateString('vi-VN', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+    }
+</script> *@
