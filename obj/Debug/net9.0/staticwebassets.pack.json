@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets\\AgriWiki_Project.831yojujc0.bundle.scp.css"
     },
     {
+      "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\addplantstyle.css",
+      "PackagePath": "staticwebassets\\css\\addplantstyle.css"
+    },
+    {
       "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\dashboard.css",
       "PackagePath": "staticwebassets\\css\\dashboard.css"
     },
@@ -19,6 +23,10 @@
     {
       "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
+    },
+    {
+      "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\viewdetailstyle.css",
+      "PackagePath": "staticwebassets\\css\\viewdetailstyle.css"
     },
     {
       "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\favicon.ico",

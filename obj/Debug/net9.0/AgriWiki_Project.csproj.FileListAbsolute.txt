@@ -199,4 +199,6 @@ e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\refint\AgriWiki_Project.dll
 e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\AgriWiki_Project.pdb
 e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\AgriWiki_Project.genruntimeconfig.cache
 e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\ref\AgriWiki_Project.dll
-e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\cfmn2bez2p-uvpdfhr9gm.gz
+e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\cfmn2bez2p-jus6hvevb4.gz
+e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\hv5iqtslk9-q4kly9sp10.gz
+e:\FPT\OJT\AgriWiki_Project\obj\Debug\net9.0\compressed\v2fp0jve4u-5sfb21qr3v.gz

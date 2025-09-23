@@ -4,530 +4,420 @@
     ViewData["Title"] = "AddPlant";
 }
 
-<h1>@ViewData["Title"]</h1>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="vi">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AgriWiki - Plant Admin</title>
-    
-    <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Select2 CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
-    <!-- Select2 Bootstrap Theme -->
-    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    
-    <style>
-        :root {
-            --primary-green: #2C4A28;
-            --light-gray: #f8f9fa;
-        }
-        
-        body {
-            background-color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        
-        .header-card {
-            background-color: var(--primary-green);
-            color: white;
-        }
-        
-        .btn-primary {
-            background-color: var(--primary-green);
-            border-color: var(--primary-green);
-        }
-        
-        .btn-primary:hover {
-            background-color: #1e3319;
-            border-color: #1e3319;
-        }
-        
-        .section-header {
-            background-color: var(--light-gray);
-            padding: 10px 15px;
-            margin: 20px -15px 15px -15px;
-            border-left: 4px solid var(--primary-green);
-            font-weight: 600;
-        }
-        
-        .image-preview {
-            position: relative;
-            display: inline-block;
-            margin: 5px;
-        }
-        
-        .image-preview img {
-            width: 100px;
-            height: 100px;
-            object-fit: cover;
-            border-radius: 8px;
-            border: 2px solid #dee2e6;
-        }
-        
-        .image-remove {
-            position: absolute;
-            top: -8px;
-            right: -8px;
-            background: #dc3545;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            font-size: 12px;
-            cursor: pointer;
-        }
-        
-        .tooltip-icon {
-            color: var(--primary-green);
-            cursor: help;
-            margin-left: 5px;
-        }
-        
-        .select2-container--bootstrap-5 .select2-selection {
-            min-height: 38px;
-        }
-        
-        .add-new-btn {
-            background-color: var(--primary-green);
-            color: white;
-            border: none;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-size: 12px;
-            margin-left: 10px;
-        }
-        
-        .add-new-btn:hover {
-            background-color: #1e3319;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">\
+    <link rel="stylesheet" href="~/css/addplantstyle.css">
+    <title>AgriWiki - Quản lý Cây Trồng</title>
 </head>
+
 <body>
-    <div class="container-fluid py-4">
-        <div class="row justify-content-center">
-            <div class="col-12 col-lg-10 col-xl-8">
-                <div class="card shadow">
-                    <!-- Header -->
-                    <div class="card-header header-card">
-                        <h3 class="mb-0">
-                            <i class="fas fa-seedling me-2"></i>
-                            AgriWiki - Plant Information Management
-                        </h3>
+    <div class="header">
+        <h1>🌱 AgriWiki - Quản lý Cây Trồng</h1>
+        <p>Hệ thống quản lý thông tin cây trồng cho admin</p>
+    </div>
+
+    <div class="container">
+        <form id="plantForm">
+            <!-- Thông tin cơ bản -->
+            <div class="card">
+                <h2 class="section-title">📝 Thông tin cơ bản</h2>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="plantName">Tên cây trồng *</label>
+                        <input type="text" id="plantName" name="plantName" required>
                     </div>
-                    
-                    <!-- Form Body -->
-                    <div class="card-body">
-                        <form id="plantForm">
-                            <!-- Basic Information -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="plantName" class="form-label">Plant Name <span class="text-danger">*</span></label>
-                                        <input type="text" class="form-control" id="plantName" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="scientificName" class="form-label">Scientific Name</label>
-                                        <input type="text" class="form-control" id="scientificName">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="category" class="form-label">Category</label>
-                                        <div class="d-flex align-items-center">
-                                            <select class="form-select" id="category">
-                                                <option value="">Select Category</option>
-                                                <option value="vegetable">Vegetable</option>
-                                                <option value="fruit">Fruit</option>
-                                                <option value="herbal">Herbal</option>
-                                                <option value="ornamental">Ornamental</option>
-                                            </select>
-                                            <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
-                                                + Add New
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="description" class="form-label">Description</label>
-                                <textarea class="form-control" id="description" rows="4" placeholder="Enter plant description..."></textarea>
-                            </div>
-                            
-                            <!-- Images Section -->
-                            <div class="mb-4">
-                                <label class="form-label">Plant Images</label>
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <input type="file" class="form-control mb-2" id="imageFiles" multiple accept="image/*">
-                                        <small class="text-muted">Select multiple image files</small>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <input type="url" class="form-control mb-2" id="imageUrl" placeholder="Or paste image URL">
-                                        <button type="button" class="btn btn-outline-secondary btn-sm" id="addImageUrl">Add URL</button>
-                                    </div>
-                                </div>
-                                <div id="imagePreview" class="mt-3"></div>
-                            </div>
-                            
-                            <!-- Growth Conditions Section -->
-                            <div class="section-header">
-                                <i class="fas fa-thermometer-half me-2"></i>Growth Conditions
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="temperature" class="form-label">Temperature Range</label>
-                                        <input type="text" class="form-control" id="temperature" placeholder="e.g., 20-30°C">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="humidity" class="form-label">Humidity Range</label>
-                                        <input type="text" class="form-control" id="humidity" placeholder="e.g., 60-80%">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="soilType" class="form-label">Soil Type</label>
-                                        <input type="text" class="form-control" id="soilType" placeholder="e.g., Well-drained loamy soil">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="sunlight" class="form-label">
-                                            Sunlight Requirements
-                                            <i class="fas fa-info-circle tooltip-icon" data-bs-toggle="tooltip" 
-                                               title="Full sun means at least 6 hours/day, partial sun 3-6 hours, shade less than 3 hours"></i>
-                                        </label>
-                                        <input type="text" class="form-control" id="sunlight" placeholder="e.g., Full sun">
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                                <label for="watering" class="form-label">Watering Instructions</label>
-                                <textarea class="form-control" id="watering" rows="3" placeholder="Enter watering instructions..."></textarea>
-                            </div>
-                            
-                            <!-- Multi-select Sections -->
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="diseases" class="form-label">Common Diseases</label>
-                                        <div class="d-flex align-items-center">
-                                            <select class="form-select" id="diseases" multiple>
-                                                <option value="powdery_mildew">Powdery Mildew</option>
-                                                <option value="rust">Rust</option>
-                                                <option value="blight">Blight</option>
-                                                <option value="root_rot">Root Rot</option>
-                                            </select>
-                                            <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addDiseaseModal">
-                                                + Add New
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="mb-3">
-                                        <label for="pests" class="form-label">Common Pests</label>
-                                        <div class="d-flex align-items-center">
-                                            <select class="form-select" id="pests" multiple>
-                                                <option value="aphids">Aphids</option>
-                                                <option value="caterpillars">Caterpillars</option>
-                                                <option value="spider_mites">Spider Mites</option>
-                                                <option value="whiteflies">Whiteflies</option>
-                                            </select>
-                                            <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addPestModal">
-                                                + Add New
-                                            </button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            
-                            <div class="mb-4">
-                                <label for="uses" class="form-label">Plant Uses</label>
-                                <div class="d-flex align-items-center">
-                                    <select class="form-select" id="uses" multiple>
-                                        <option value="medicine">Medicine</option>
-                                        <option value="food">Food</option>
-                                        <option value="decoration">Decoration</option>
-                                        <option value="aromatherapy">Aromatherapy</option>
-                                        <option value="pest_control">Natural Pest Control</option>
-                                    </select>
-                                    <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addUseModal">
-                                        + Add New
-                                    </button>
-                                </div>
-                            </div>
-                            
-                            <!-- Action Buttons -->
-                            <div class="d-flex gap-2 justify-content-end">
-                                <button type="button" class="btn btn-secondary">
-                                    <i class="fas fa-times me-1"></i>Cancel
-                                </button>
-                                <button type="submit" class="btn btn-primary">
-                                    <i class="fas fa-save me-1"></i>Save Plant
-                                </button>
-                            </div>
-                        </form>
+                    <div class="form-group">
+                        <label for="scientificName">Tên khoa học</label>
+                        <input type="text" id="scientificName" name="scientificName">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="category">Danh mục *</label>
+                        <select id="category" name="category" required>
+                            <option value="">-- Chọn danh mục --</option>
+                            <option value="1">Rau ăn lá</option>
+                            <option value="2">Cây ăn quả</option>
+                            <option value="3">Dược liệu</option>
+                            <option value="4">Hoa cảnh</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="imageUrl">URL hình ảnh</label>
+                        <input type="url" id="imageUrl" name="imageUrl" onchange="previewImage()">
+                    </div>
+                </div>
+
+                <div class="form-row single">
+                    <div class="form-group">
+                        <label for="description">Mô tả chi tiết</label>
+                        <textarea id="description" name="description" rows="4"
+                            placeholder="Nhập mô tả chi tiết về cây trồng..."></textarea>
+                    </div>
+                </div>
+
+                <div id="imagePreview" style="display: none;">
+                    <img id="previewImg" class="image-preview" alt="Preview">
+                </div>
+            </div>
+
+            <!-- Điều kiện sinh trưởng -->
+            <div class="card">
+                <h2 class="section-title">🌡️ Điều kiện sinh trưởng</h2>
+
+                <div class="growth-conditions-grid">
+                    <div class="form-group">
+                        <label for="temperature">Nhiệt độ</label>
+                        <input type="text" id="temperature" name="temperature" placeholder="VD: 20-30°C">
+                    </div>
+                    <div class="form-group">
+                        <label for="humidity">Độ ẩm</label>
+                        <input type="text" id="humidity" name="humidity" placeholder="VD: 60-80%">
+                    </div>
+                    <div class="form-group">
+                        <label for="soilType">Loại đất</label>
+                        <input type="text" id="soilType" name="soilType" placeholder="VD: Đất thịt pha cát">
+                    </div>
+                    <div class="form-group">
+                        <label for="sunlight">Ánh sáng</label>
+                        <input type="text" id="sunlight" name="sunlight" placeholder="VD: Ánh sáng trực tiếp 6-8h/ngày">
+                    </div>
+                </div>
+
+                <div class="form-row single">
+                    <div class="form-group">
+                        <label for="watering">Tưới nước</label>
+                        <textarea id="watering" name="watering" rows="3"
+                            placeholder="Hướng dẫn tưới nước chi tiết..."></textarea>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Add Category Modal -->
-    <div class="modal fade" id="addCategoryModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Category</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="newCategory" class="form-label">Category Name</label>
-                        <input type="text" class="form-control" id="newCategory" placeholder="Enter category name">
+
+            <!-- Bệnh hại -->
+            <div class="card">
+                <h2 class="section-title">🦠 Bệnh hại</h2>
+
+                <div class="multi-select-container">
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="disease1" name="diseases" value="1">
+                        <label for="disease1">Bệnh thối rễ - Gây ra bởi nấm, làm rễ cây thối nhũn</label>
+                    </div>
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="disease2" name="diseases" value="2">
+                        <label for="disease2">Bệnh đốm lá - Xuất hiện các đốm nâu trên lá</label>
+                    </div>
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="disease3" name="diseases" value="3">
+                        <label for="disease3">Bệnh héo vàng - Lá cây héo vàng và rụng</label>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="saveCategoryBtn">Add Category</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Add Disease Modal -->
-    <div class="modal fade" id="addDiseaseModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Disease</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="newDisease" class="form-label">Disease Name</label>
-                        <input type="text" class="form-control" id="newDisease" placeholder="Enter disease name">
+
+                <div class="add-new-section">
+                    <button type="button" class="btn btn-secondary" onclick="toggleAddDisease()">
+                        ➕ Thêm bệnh hại mới
+                    </button>
+                    <div id="addDiseaseForm" class="add-new-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newDiseaseName">Tên bệnh</label>
+                                <input type="text" id="newDiseaseName">
+                            </div>
+                            <div class="form-group">
+                                <label for="newDiseaseDesc">Mô tả</label>
+                                <input type="text" id="newDiseaseDesc">
+                            </div>
+                        </div>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="newDiseasePrevention">Phương pháp phòng chống</label>
+                                <textarea id="newDiseasePrevention" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addDisease()">Thêm</button>
+                        <button type="button" class="btn btn-secondary" onclick="toggleAddDisease()">Hủy</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="saveDiseaseBtn">Add Disease</button>
-                </div>
             </div>
-        </div>
-    </div>
-    
-    <!-- Add Pest Modal -->
-    <div class="modal fade" id="addPestModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Pest</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="newPest" class="form-label">Pest Name</label>
-                        <input type="text" class="form-control" id="newPest" placeholder="Enter pest name">
+
+            <!-- Sâu hại -->
+            <div class="card">
+                <h2 class="section-title">🐛 Sâu hại</h2>
+
+                <div class="multi-select-container">
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="pest1" name="pests" value="1">
+                        <label for="pest1">Rầy xanh - Hút nhựa cây, làm lá vàng úa</label>
+                    </div>
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="pest2" name="pests" value="2">
+                        <label for="pest2">Sâu cuốn lá - Ăn lá non, cuốn lá lại</label>
+                    </div>
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="pest3" name="pests" value="3">
+                        <label for="pest3">Tuyến trùng - Gây sưng rễ, cản trở hấp thu</label>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="savePestBtn">Add Pest</button>
-                </div>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Add Use Modal -->
-    <div class="modal fade" id="addUseModal" tabindex="-1">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Add New Use</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="mb-3">
-                        <label for="newUse" class="form-label">Use Name</label>
-                        <input type="text" class="form-control" id="newUse" placeholder="Enter use name">
+
+                <div class="add-new-section">
+                    <button type="button" class="btn btn-secondary" onclick="toggleAddPest()">
+                        ➕ Thêm sâu hại mới
+                    </button>
+                    <div id="addPestForm" class="add-new-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newPestName">Tên sâu hại</label>
+                                <input type="text" id="newPestName">
+                            </div>
+                            <div class="form-group">
+                                <label for="newPestDesc">Mô tả</label>
+                                <input type="text" id="newPestDesc">
+                            </div>
+                        </div>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="newPestControl">Phương pháp kiểm soát</label>
+                                <textarea id="newPestControl" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addPest()">Thêm</button>
+                        <button type="button" class="btn btn-secondary" onclick="toggleAddPest()">Hủy</button>
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" id="saveUseBtn">Add Use</button>
+            </div>
+
+            <!-- Công dụng -->
+            <div class="card">
+                <h2 class="section-title">💊 Công dụng</h2>
+
+                <div class="multi-select-container">
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="use1" name="uses" value="1">
+                        <label for="use1">Thực phẩm - Cung cấp dinh dưỡng cho cơ thể</label>
+                    </div>
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="use2" name="uses" value="2">
+                        <label for="use2">Dược liệu - Có tác dụng chữa bệnh</label>
+                    </div>
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="use3" name="uses" value="3">
+                        <label for="use3">Trang trí - Làm đẹp không gian sống</label>
+                    </div>
+                    <div class="multi-select-item">
+                        <input type="checkbox" id="use4" name="uses" value="4">
+                        <label for="use4">Công nghiệp - Nguyên liệu sản xuất</label>
+                    </div>
+                </div>
+
+                <div class="add-new-section">
+                    <button type="button" class="btn btn-secondary" onclick="toggleAddUse()">
+                        ➕ Thêm công dụng mới
+                    </button>
+                    <div id="addUseForm" class="add-new-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="newUseName">Tên công dụng</label>
+                                <input type="text" id="newUseName">
+                            </div>
+                        </div>
+                        <div class="form-row single">
+                            <div class="form-group">
+                                <label for="newUseDesc">Mô tả công dụng</label>
+                                <textarea id="newUseDesc" rows="3"></textarea>
+                            </div>
+                        </div>
+                        <button type="button" class="btn btn-primary" onclick="addUse()">Thêm</button>
+                        <button type="button" class="btn btn-secondary" onclick="toggleAddUse()">Hủy</button>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- Nút hành động -->
+            <div class="form-actions">
+                <button type="button" class="btn btn-secondary">🚫 Hủy</button>
+                <button type="button" class="btn btn-danger">🗑️ Xóa cây trồng</button>
+                <button type="submit" class="btn btn-primary">💾 Lưu thông tin</button>
+            </div>
+        </form>
     </div>
-    
-    <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
-    <!-- Bootstrap 5 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Select2 JS -->
-    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
-    
+
     <script>
-        $(document).ready(function() {
-            // Initialize Select2 for multi-select dropdowns
-            $('#diseases, #pests, #uses').select2({
-                theme: 'bootstrap-5',
-                placeholder: 'Select options...',
-                allowClear: true
-            });
-            
-            // Initialize tooltips
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-                return new bootstrap.Tooltip(tooltipTriggerEl);
-            });
-            
-            // Image handling
-            let imageCounter = 0;
-            
-            // Handle file input
-            $('#imageFiles').on('change', function(e) {
-                const files = e.target.files;
-                for (let i = 0; i < files.length; i++) {
-                    const file = files[i];
-                    if (file.type.startsWith('image/')) {
-                        const reader = new FileReader();
-                        reader.onload = function(e) {
-                            addImagePreview(e.target.result, `file_${imageCounter++}`);
-                        };
-                        reader.readAsDataURL(file);
-                    }
-                }
-            });
-            
-            // Handle URL input
-            $('#addImageUrl').on('click', function() {
-                const url = $('#imageUrl').val().trim();
-                if (url) {
-                    addImagePreview(url, `url_${imageCounter++}`);
-                    $('#imageUrl').val('');
-                }
-            });
-            
-            function addImagePreview(src, id) {
-                const previewHtml = `
-                    <div class="image-preview" data-id="${id}">
-                        <img src="${src}" alt="Plant image">
-                        <button type="button" class="image-remove" onclick="removeImage('${id}')">
-                            <i class="fas fa-times"></i>
-                        </button>
-                    </div>
-                `;
-                $('#imagePreview').append(previewHtml);
+        // Preview image function
+        function previewImage() {
+            const imageUrl = document.getElementById('imageUrl').value;
+            const preview = document.getElementById('imagePreview');
+            const previewImg = document.getElementById('previewImg');
+
+            if (imageUrl) {
+                previewImg.src = imageUrl;
+                preview.style.display = 'block';
+            } else {
+                preview.style.display = 'none';
             }
-            
-            // Make removeImage function global
-            window.removeImage = function(id) {
-                $(`.image-preview[data-id="${id}"]`).remove();
+        }
+
+        // Toggle add disease form
+        function toggleAddDisease() {
+            const form = document.getElementById('addDiseaseForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add new disease
+        function addDisease() {
+            const name = document.getElementById('newDiseaseName').value;
+            const desc = document.getElementById('newDiseaseDesc').value;
+            const prevention = document.getElementById('newDiseasePrevention').value;
+
+            if (name && desc) {
+                const container = document.querySelector('#addDiseaseForm').closest('.card').querySelector('.multi-select-container');
+                const newId = 'disease' + Date.now();
+                const newItem = document.createElement('div');
+                newItem.className = 'multi-select-item';
+                newItem.innerHTML = `
+                    <input type="checkbox" id="${newId}" name="diseases" value="${newId}" checked>
+                    <label for="${newId}">${name} - ${desc}</label>
+                `;
+                container.appendChild(newItem);
+
+                // Clear form
+                document.getElementById('newDiseaseName').value = '';
+                document.getElementById('newDiseaseDesc').value = '';
+                document.getElementById('newDiseasePrevention').value = '';
+                toggleAddDisease();
+
+                alert('Đã thêm bệnh hại mới thành công!');
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin!');
+            }
+        }
+
+        // Toggle add pest form
+        function toggleAddPest() {
+            const form = document.getElementById('addPestForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add new pest
+        function addPest() {
+            const name = document.getElementById('newPestName').value;
+            const desc = document.getElementById('newPestDesc').value;
+            const control = document.getElementById('newPestControl').value;
+
+            if (name && desc) {
+                const container = document.querySelector('#addPestForm').closest('.card').querySelector('.multi-select-container');
+                const newId = 'pest' + Date.now();
+                const newItem = document.createElement('div');
+                newItem.className = 'multi-select-item';
+                newItem.innerHTML = `
+                    <input type="checkbox" id="${newId}" name="pests" value="${newId}" checked>
+                    <label for="${newId}">${name} - ${desc}</label>
+                `;
+                container.appendChild(newItem);
+
+                // Clear form
+                document.getElementById('newPestName').value = '';
+                document.getElementById('newPestDesc').value = '';
+                document.getElementById('newPestControl').value = '';
+                toggleAddPest();
+
+                alert('Đã thêm sâu hại mới thành công!');
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin!');
+            }
+        }
+
+        // Toggle add use form
+        function toggleAddUse() {
+            const form = document.getElementById('addUseForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Add new use
+        function addUse() {
+            const name = document.getElementById('newUseName').value;
+            const desc = document.getElementById('newUseDesc').value;
+
+            if (name && desc) {
+                const container = document.querySelector('#addUseForm').closest('.card').querySelector('.multi-select-container');
+                const newId = 'use' + Date.now();
+                const newItem = document.createElement('div');
+                newItem.className = 'multi-select-item';
+                newItem.innerHTML = `
+                    <input type="checkbox" id="${newId}" name="uses" value="${newId}" checked>
+                    <label for="${newId}">${name} - ${desc}</label>
+                `;
+                container.appendChild(newItem);
+
+                // Clear form
+                document.getElementById('newUseName').value = '';
+                document.getElementById('newUseDesc').value = '';
+                toggleAddUse();
+
+                alert('Đã thêm công dụng mới thành công!');
+            } else {
+                alert('Vui lòng điền đầy đủ thông tin!');
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('plantForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Collect form data
+            const formData = {
+                name: document.getElementById('plantName').value,
+                scientificName: document.getElementById('scientificName').value,
+                category: document.getElementById('category').value,
+                description: document.getElementById('description').value,
+                imageUrl: document.getElementById('imageUrl').value,
+                growthConditions: {
+                    temperature: document.getElementById('temperature').value,
+                    humidity: document.getElementById('humidity').value,
+                    soilType: document.getElementById('soilType').value,
+                    sunlight: document.getElementById('sunlight').value,
+                    watering: document.getElementById('watering').value
+                },
+                diseases: Array.from(document.querySelectorAll('input[name="diseases"]:checked')).map(cb => cb.value),
+                pests: Array.from(document.querySelectorAll('input[name="pests"]:checked')).map(cb => cb.value),
+                uses: Array.from(document.querySelectorAll('input[name="uses"]:checked')).map(cb => cb.value)
             };
-            
-            // Modal handlers for adding new items
-            $('#saveCategoryBtn').on('click', function() {
-                const newCategory = $('#newCategory').val().trim();
-                if (newCategory) {
-                    const value = newCategory.toLowerCase().replace(/\s+/g, '_');
-                    $('#category').append(`<option value="${value}">${newCategory}</option>`);
-                    $('#category').val(value);
-                    $('#newCategory').val('');
-                    $('#addCategoryModal').modal('hide');
-                }
-            });
-            
-            $('#saveDiseaseBtn').on('click', function() {
-                const newDisease = $('#newDisease').val().trim();
-                if (newDisease) {
-                    const value = newDisease.toLowerCase().replace(/\s+/g, '_');
-                    $('#diseases').append(`<option value="${value}" selected>${newDisease}</option>`);
-                    $('#diseases').trigger('change');
-                    $('#newDisease').val('');
-                    $('#addDiseaseModal').modal('hide');
-                }
-            });
-            
-            $('#savePestBtn').on('click', function() {
-                const newPest = $('#newPest').val().trim();
-                if (newPest) {
-                    const value = newPest.toLowerCase().replace(/\s+/g, '_');
-                    $('#pests').append(`<option value="${value}" selected>${newPest}</option>`);
-                    $('#pests').trigger('change');
-                    $('#newPest').val('');
-                    $('#addPestModal').modal('hide');
-                }
-            });
-            
-            $('#saveUseBtn').on('click', function() {
-                const newUse = $('#newUse').val().trim();
-                if (newUse) {
-                    const value = newUse.toLowerCase().replace(/\s+/g, '_');
-                    $('#uses').append(`<option value="${value}" selected>${newUse}</option>`);
-                    $('#uses').trigger('change');
-                    $('#newUse').val('');
-                    $('#addUseModal').modal('hide');
-                }
-            });
-            
-            // Form submission
-            $('#plantForm').on('submit', function(e) {
-                e.preventDefault();
-                
-                // Collect form data
-                const formData = {
-                    plantName: $('#plantName').val(),
-                    scientificName: $('#scientificName').val(),
-                    category: $('#category').val(),
-                    description: $('#description').val(),
-                    temperature: $('#temperature').val(),
-                    humidity: $('#humidity').val(),
-                    soilType: $('#soilType').val(),
-                    sunlight: $('#sunlight').val(),
-                    watering: $('#watering').val(),
-                    diseases: $('#diseases').val(),
-                    pests: $('#pests').val(),
-                    uses: $('#uses').val(),
-                    images: $('.image-preview img').map(function() { return $(this).attr('src'); }).get()
-                };
-                
-                // Simulate saving (in real app, this would be an API call)
-                console.log('Plant data to save:', formData);
-                alert('Plant information saved successfully! (This is a demo - no actual database connection)');
-            });
-            
-            // Cancel button
-            $('.btn-secondary').on('click', function() {
-                if (confirm('Are you sure you want to cancel? All unsaved changes will be lost.')) {
-                    $('#plantForm')[0].reset();
-                    $('#imagePreview').empty();
-                    $('#diseases, #pests, #uses').val(null).trigger('change');
-                }
-            });
+
+            console.log('Plant data:', formData);
+            alert('Thông tin cây trồng đã được lưu thành công!\n\nDữ liệu đã được ghi vào console để kiểm tra.');
+        });
+
+        // Demo data for editing mode
+        function loadDemoData() {
+            document.getElementById('plantName').value = 'Cà chua';
+            document.getElementById('scientificName').value = 'Solanum lycopersicum';
+            document.getElementById('category').value = '2';
+            document.getElementById('description').value = 'Cà chua là loại quả có màu đỏ, giàu vitamin C và lycopene, thường được sử dụng trong nấu ăn và làm salad.';
+            document.getElementById('imageUrl').value = 'https://images.unsplash.com/photo-1546470427-227211c0b77b?ixlib=rb-4.0.3&w=400';
+            document.getElementById('temperature').value = '18-25°C';
+            document.getElementById('humidity').value = '65-75%';
+            document.getElementById('soilType').value = 'Đất thịt pha cát, tơi xốp';
+            document.getElementById('sunlight').value = 'Ánh sáng trực tiếp 6-8 giờ/ngày';
+            document.getElementById('watering').value = 'Tưới đều đặn, giữ độ ẩm đất khoảng 70-80%. Tránh tưới ngập úng.';
+
+            // Select some diseases, pests, and uses
+            document.getElementById('disease2').checked = true;
+            document.getElementById('pest1').checked = true;
+            document.getElementById('use1').checked = true;
+
+            previewImage();
+        }
+
+        // Load demo data when page loads
+        window.addEventListener('load', function () {
+            setTimeout(loadDemoData, 1000);
         });
     </script>
 </body>
+
 </html>
