@@ -1,0 +1,533 @@
+@page
+@model AgriWiki_Project.Pages.AddPlant
+@{
+    ViewData["Title"] = "AddPlant";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriWiki - Plant Admin</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Select2 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet">
+    <!-- Select2 Bootstrap Theme -->
+    <link href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" rel="stylesheet">
+    <!-- Font Awesome for icons -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-green: #2C4A28;
+            --light-gray: #f8f9fa;
+        }
+        
+        body {
+            background-color: #ffffff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .header-card {
+            background-color: var(--primary-green);
+            color: white;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-green);
+            border-color: var(--primary-green);
+        }
+        
+        .btn-primary:hover {
+            background-color: #1e3319;
+            border-color: #1e3319;
+        }
+        
+        .section-header {
+            background-color: var(--light-gray);
+            padding: 10px 15px;
+            margin: 20px -15px 15px -15px;
+            border-left: 4px solid var(--primary-green);
+            font-weight: 600;
+        }
+        
+        .image-preview {
+            position: relative;
+            display: inline-block;
+            margin: 5px;
+        }
+        
+        .image-preview img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 2px solid #dee2e6;
+        }
+        
+        .image-remove {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        
+        .tooltip-icon {
+            color: var(--primary-green);
+            cursor: help;
+            margin-left: 5px;
+        }
+        
+        .select2-container--bootstrap-5 .select2-selection {
+            min-height: 38px;
+        }
+        
+        .add-new-btn {
+            background-color: var(--primary-green);
+            color: white;
+            border: none;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 12px;
+            margin-left: 10px;
+        }
+        
+        .add-new-btn:hover {
+            background-color: #1e3319;
+        }
+    </style>
+</head>
+<body>
+    <div class="container-fluid py-4">
+        <div class="row justify-content-center">
+            <div class="col-12 col-lg-10 col-xl-8">
+                <div class="card shadow">
+                    <!-- Header -->
+                    <div class="card-header header-card">
+                        <h3 class="mb-0">
+                            <i class="fas fa-seedling me-2"></i>
+                            AgriWiki - Plant Information Management
+                        </h3>
+                    </div>
+                    
+                    <!-- Form Body -->
+                    <div class="card-body">
+                        <form id="plantForm">
+                            <!-- Basic Information -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="plantName" class="form-label">Plant Name <span class="text-danger">*</span></label>
+                                        <input type="text" class="form-control" id="plantName" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="scientificName" class="form-label">Scientific Name</label>
+                                        <input type="text" class="form-control" id="scientificName">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="category" class="form-label">Category</label>
+                                        <div class="d-flex align-items-center">
+                                            <select class="form-select" id="category">
+                                                <option value="">Select Category</option>
+                                                <option value="vegetable">Vegetable</option>
+                                                <option value="fruit">Fruit</option>
+                                                <option value="herbal">Herbal</option>
+                                                <option value="ornamental">Ornamental</option>
+                                            </select>
+                                            <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addCategoryModal">
+                                                + Add New
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="description" class="form-label">Description</label>
+                                <textarea class="form-control" id="description" rows="4" placeholder="Enter plant description..."></textarea>
+                            </div>
+                            
+                            <!-- Images Section -->
+                            <div class="mb-4">
+                                <label class="form-label">Plant Images</label>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <input type="file" class="form-control mb-2" id="imageFiles" multiple accept="image/*">
+                                        <small class="text-muted">Select multiple image files</small>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <input type="url" class="form-control mb-2" id="imageUrl" placeholder="Or paste image URL">
+                                        <button type="button" class="btn btn-outline-secondary btn-sm" id="addImageUrl">Add URL</button>
+                                    </div>
+                                </div>
+                                <div id="imagePreview" class="mt-3"></div>
+                            </div>
+                            
+                            <!-- Growth Conditions Section -->
+                            <div class="section-header">
+                                <i class="fas fa-thermometer-half me-2"></i>Growth Conditions
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="temperature" class="form-label">Temperature Range</label>
+                                        <input type="text" class="form-control" id="temperature" placeholder="e.g., 20-30°C">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="humidity" class="form-label">Humidity Range</label>
+                                        <input type="text" class="form-control" id="humidity" placeholder="e.g., 60-80%">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="soilType" class="form-label">Soil Type</label>
+                                        <input type="text" class="form-control" id="soilType" placeholder="e.g., Well-drained loamy soil">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="sunlight" class="form-label">
+                                            Sunlight Requirements
+                                            <i class="fas fa-info-circle tooltip-icon" data-bs-toggle="tooltip" 
+                                               title="Full sun means at least 6 hours/day, partial sun 3-6 hours, shade less than 3 hours"></i>
+                                        </label>
+                                        <input type="text" class="form-control" id="sunlight" placeholder="e.g., Full sun">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="watering" class="form-label">Watering Instructions</label>
+                                <textarea class="form-control" id="watering" rows="3" placeholder="Enter watering instructions..."></textarea>
+                            </div>
+                            
+                            <!-- Multi-select Sections -->
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="diseases" class="form-label">Common Diseases</label>
+                                        <div class="d-flex align-items-center">
+                                            <select class="form-select" id="diseases" multiple>
+                                                <option value="powdery_mildew">Powdery Mildew</option>
+                                                <option value="rust">Rust</option>
+                                                <option value="blight">Blight</option>
+                                                <option value="root_rot">Root Rot</option>
+                                            </select>
+                                            <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addDiseaseModal">
+                                                + Add New
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="pests" class="form-label">Common Pests</label>
+                                        <div class="d-flex align-items-center">
+                                            <select class="form-select" id="pests" multiple>
+                                                <option value="aphids">Aphids</option>
+                                                <option value="caterpillars">Caterpillars</option>
+                                                <option value="spider_mites">Spider Mites</option>
+                                                <option value="whiteflies">Whiteflies</option>
+                                            </select>
+                                            <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addPestModal">
+                                                + Add New
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-4">
+                                <label for="uses" class="form-label">Plant Uses</label>
+                                <div class="d-flex align-items-center">
+                                    <select class="form-select" id="uses" multiple>
+                                        <option value="medicine">Medicine</option>
+                                        <option value="food">Food</option>
+                                        <option value="decoration">Decoration</option>
+                                        <option value="aromatherapy">Aromatherapy</option>
+                                        <option value="pest_control">Natural Pest Control</option>
+                                    </select>
+                                    <button type="button" class="add-new-btn" data-bs-toggle="modal" data-bs-target="#addUseModal">
+                                        + Add New
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <!-- Action Buttons -->
+                            <div class="d-flex gap-2 justify-content-end">
+                                <button type="button" class="btn btn-secondary">
+                                    <i class="fas fa-times me-1"></i>Cancel
+                                </button>
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="fas fa-save me-1"></i>Save Plant
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Category Modal -->
+    <div class="modal fade" id="addCategoryModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Category</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="newCategory" class="form-label">Category Name</label>
+                        <input type="text" class="form-control" id="newCategory" placeholder="Enter category name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveCategoryBtn">Add Category</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Disease Modal -->
+    <div class="modal fade" id="addDiseaseModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Disease</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="newDisease" class="form-label">Disease Name</label>
+                        <input type="text" class="form-control" id="newDisease" placeholder="Enter disease name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveDiseaseBtn">Add Disease</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Pest Modal -->
+    <div class="modal fade" id="addPestModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Pest</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="newPest" class="form-label">Pest Name</label>
+                        <input type="text" class="form-control" id="newPest" placeholder="Enter pest name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="savePestBtn">Add Pest</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add Use Modal -->
+    <div class="modal fade" id="addUseModal" tabindex="-1">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add New Use</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="newUse" class="form-label">Use Name</label>
+                        <input type="text" class="form-control" id="newUse" placeholder="Enter use name">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary" id="saveUseBtn">Add Use</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Initialize Select2 for multi-select dropdowns
+            $('#diseases, #pests, #uses').select2({
+                theme: 'bootstrap-5',
+                placeholder: 'Select options...',
+                allowClear: true
+            });
+            
+            // Initialize tooltips
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+            var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+                return new bootstrap.Tooltip(tooltipTriggerEl);
+            });
+            
+            // Image handling
+            let imageCounter = 0;
+            
+            // Handle file input
+            $('#imageFiles').on('change', function(e) {
+                const files = e.target.files;
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    if (file.type.startsWith('image/')) {
+                        const reader = new FileReader();
+                        reader.onload = function(e) {
+                            addImagePreview(e.target.result, `file_${imageCounter++}`);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                }
+            });
+            
+            // Handle URL input
+            $('#addImageUrl').on('click', function() {
+                const url = $('#imageUrl').val().trim();
+                if (url) {
+                    addImagePreview(url, `url_${imageCounter++}`);
+                    $('#imageUrl').val('');
+                }
+            });
+            
+            function addImagePreview(src, id) {
+                const previewHtml = `
+                    <div class="image-preview" data-id="${id}">
+                        <img src="${src}" alt="Plant image">
+                        <button type="button" class="image-remove" onclick="removeImage('${id}')">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                `;
+                $('#imagePreview').append(previewHtml);
+            }
+            
+            // Make removeImage function global
+            window.removeImage = function(id) {
+                $(`.image-preview[data-id="${id}"]`).remove();
+            };
+            
+            // Modal handlers for adding new items
+            $('#saveCategoryBtn').on('click', function() {
+                const newCategory = $('#newCategory').val().trim();
+                if (newCategory) {
+                    const value = newCategory.toLowerCase().replace(/\s+/g, '_');
+                    $('#category').append(`<option value="${value}">${newCategory}</option>`);
+                    $('#category').val(value);
+                    $('#newCategory').val('');
+                    $('#addCategoryModal').modal('hide');
+                }
+            });
+            
+            $('#saveDiseaseBtn').on('click', function() {
+                const newDisease = $('#newDisease').val().trim();
+                if (newDisease) {
+                    const value = newDisease.toLowerCase().replace(/\s+/g, '_');
+                    $('#diseases').append(`<option value="${value}" selected>${newDisease}</option>`);
+                    $('#diseases').trigger('change');
+                    $('#newDisease').val('');
+                    $('#addDiseaseModal').modal('hide');
+                }
+            });
+            
+            $('#savePestBtn').on('click', function() {
+                const newPest = $('#newPest').val().trim();
+                if (newPest) {
+                    const value = newPest.toLowerCase().replace(/\s+/g, '_');
+                    $('#pests').append(`<option value="${value}" selected>${newPest}</option>`);
+                    $('#pests').trigger('change');
+                    $('#newPest').val('');
+                    $('#addPestModal').modal('hide');
+                }
+            });
+            
+            $('#saveUseBtn').on('click', function() {
+                const newUse = $('#newUse').val().trim();
+                if (newUse) {
+                    const value = newUse.toLowerCase().replace(/\s+/g, '_');
+                    $('#uses').append(`<option value="${value}" selected>${newUse}</option>`);
+                    $('#uses').trigger('change');
+                    $('#newUse').val('');
+                    $('#addUseModal').modal('hide');
+                }
+            });
+            
+            // Form submission
+            $('#plantForm').on('submit', function(e) {
+                e.preventDefault();
+                
+                // Collect form data
+                const formData = {
+                    plantName: $('#plantName').val(),
+                    scientificName: $('#scientificName').val(),
+                    category: $('#category').val(),
+                    description: $('#description').val(),
+                    temperature: $('#temperature').val(),
+                    humidity: $('#humidity').val(),
+                    soilType: $('#soilType').val(),
+                    sunlight: $('#sunlight').val(),
+                    watering: $('#watering').val(),
+                    diseases: $('#diseases').val(),
+                    pests: $('#pests').val(),
+                    uses: $('#uses').val(),
+                    images: $('.image-preview img').map(function() { return $(this).attr('src'); }).get()
+                };
+                
+                // Simulate saving (in real app, this would be an API call)
+                console.log('Plant data to save:', formData);
+                alert('Plant information saved successfully! (This is a demo - no actual database connection)');
+            });
+            
+            // Cancel button
+            $('.btn-secondary').on('click', function() {
+                if (confirm('Are you sure you want to cancel? All unsaved changes will be lost.')) {
+                    $('#plantForm')[0].reset();
+                    $('#imagePreview').empty();
+                    $('#diseases, #pests, #uses').val(null).trigger('change');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

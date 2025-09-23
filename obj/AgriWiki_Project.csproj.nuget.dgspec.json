@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "e:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj": {}
+    "E:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj": {}
   },
   "projects": {
-    "e:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj": {
+    "E:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "e:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj",
+        "projectUniqueName": "E:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj",
         "projectName": "AgriWiki_Project",
-        "projectPath": "e:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj",
+        "projectPath": "E:\\FPT\\OJT\\AgriWiki_Project\\AgriWiki_Project.csproj",
         "packagesPath": "C:\\Users\\nguye\\.nuget\\packages\\",
-        "outputPath": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\",
+        "outputPath": "E:\\FPT\\OJT\\AgriWiki_Project\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

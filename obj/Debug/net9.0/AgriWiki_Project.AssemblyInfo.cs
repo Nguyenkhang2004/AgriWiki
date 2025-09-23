@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AgriWiki_Project")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ddd529afe7f7f73a36cea78aa4d40dc3d66b1fcb")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c13ded99f165b6f4915d5dc47ff7982e0df113d7")]
 [assembly: System.Reflection.AssemblyProductAttribute("AgriWiki_Project")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AgriWiki_Project")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
