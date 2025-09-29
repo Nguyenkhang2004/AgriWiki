@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace AgriWiki_Project.Models;
 
-public partial class Disease
+public partial class Disease 
 {
     public int DiseaseId { get; set; }
 

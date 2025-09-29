@@ -16,406 +16,623 @@
 </head>
 
 <body>
-    <div class="header">
-        <h1>🌱 AgriWiki - Quản lý Cây Trồng</h1>
-        <p>Hệ thống quản lý thông tin cây trồng cho admin</p>
+
+    <div class="add-plant-container">
+        <!-- Thông tin cơ bản -->
+        <div class="card">
+            <h2 class="section-title">
+                <i class="fas fa-leaf"></i>
+                Thông tin cơ bản
+            </h2>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Tên cây trồng *</label>
+                    <input type="text" placeholder="Ví dụ: Cà chua">
+                </div>
+                <div class="form-group">
+                    <label>Tên khoa học</label>
+                    <input type="text" placeholder="Ví dụ: Solanum lycopersicum">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Danh mục *</label>
+                    <select>
+                        <option>Chọn danh mục</option>
+                        <option>Rau ăn lá</option>
+                        <option>Rau ăn củ</option>
+                        <option>Rau ăn quả</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Image Upload with Preview -->
+            <div class="form-row single">
+                <div class="form-group">
+                    <label>Hình ảnh</label>
+                    <div class="image-upload-section">
+                        <i class="fas fa-cloud-upload-alt" style="font-size: 2rem; color: #4CAF50;"></i>
+                        <p style="margin: 0.5rem 0; color: #666;">Chọn hoặc kéo thả ảnh vào đây</p>
+                        <input type="file" id="plantImages" multiple accept="image/*" onchange="previewImages(event)">
+                    </div>
+                    <div id="imagePreview"></div>
+                </div>
+            </div>
+
+            <div class="form-row single">
+                <div class="form-group">
+                    <label>Mô tả chi tiết</label>
+                    <textarea rows="3" placeholder="Nhập mô tả về cây trồng..."></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Điều kiện sinh trưởng -->
+        <div class="card">
+            <h2 class="section-title">
+                <i class="fas fa-seedling"></i>
+                Điều kiện sinh trưởng
+            </h2>
+
+            <div class="growth-conditions-grid">
+                <div class="form-group">
+                    <label>Nhiệt độ</label>
+                    <input type="text" placeholder="Ví dụ: 20-30°C">
+                </div>
+                <div class="form-group">
+                    <label>Độ ẩm</label>
+                    <input type="text" placeholder="Ví dụ: 60-80%">
+                </div>
+                <div class="form-group">
+                    <label>Loại đất</label>
+                    <input type="text" placeholder="Ví dụ: Đất pha cát">
+                </div>
+                <div class="form-group">
+                    <label>Ánh sáng</label>
+                    <input type="text" placeholder="Ví dụ: Toàn phần">
+                </div>
+            </div>
+
+            <div class="form-row single">
+                <div class="form-group">
+                    <label>Tưới nước</label>
+                    <input type="text" placeholder="Ví dụ: 2 lần/ngày">
+                </div>
+            </div>
+        </div>
+
+        <!-- Bệnh hại -->
+        <div class="card">
+            <h2 class="section-title">
+                <i class="fas fa-virus"></i>
+                Bệnh hại
+            </h2>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="diseaseSearch" placeholder="Tìm kiếm bệnh hại..."
+                    onkeyup="searchItems('diseaseSearch', 'diseaseContainer')">
+            </div>
+
+            <div class="multi-select-container" id="diseaseContainer">
+                <div class="multi-select-item" data-name="bệnh héo xanh vi khuẩn">
+                    <input type="checkbox" id="disease1">
+                    <label for="disease1">Bệnh héo xanh vi khuẩn</label>
+                </div>
+                <div class="multi-select-item" data-name="bệnh thối nhũn">
+                    <input type="checkbox" id="disease2">
+                    <label for="disease2">Bệnh thối nhũn</label>
+                </div>
+                <div class="multi-select-item" data-name="bệnh đốm lá">
+                    <input type="checkbox" id="disease3">
+                    <label for="disease3">Bệnh đốm lá</label>
+                </div>
+                <div class="multi-select-item" data-name="bệnh thối rễ">
+                    <input type="checkbox" id="disease4">
+                    <label for="disease4">Bệnh thối rễ</label>
+                </div>
+                <div class="multi-select-item" data-name="bệnh phấn trắng">
+                    <input type="checkbox" id="disease5">
+                    <label for="disease5">Bệnh phấn trắng</label>
+                </div>
+            </div>
+
+            <div class="add-new-section">
+                <button type="button" class="btn btn-secondary" onclick="toggleForm('addDiseaseForm')">
+                    <i class="fa-solid fa-plus"></i>
+                    Thêm bệnh hại mới
+                </button>
+                <div id="addDiseaseForm" class="add-new-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tên bệnh</label>
+                            <input type="text" id="newDiseaseName">
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả</label>
+                            <input type="text" id="newDiseaseDesc">
+                        </div>
+                    </div>
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label>Phương pháp phòng chống</label>
+                            <textarea id="newDiseasePrevention" rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary">Thêm</button>
+                    <button type="button" class="btn btn-danger" onclick="toggleForm('addDiseaseForm')">Hủy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sâu hại -->
+        <div class="card">
+            <h2 class="section-title">
+                <i class="fas fa-bug"></i>
+                Sâu hại
+            </h2>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="pestSearch" placeholder="Tìm kiếm sâu hại..."
+                    onkeyup="searchItems('pestSearch', 'pestContainer')">
+            </div>
+
+            <div class="multi-select-container" id="pestContainer">
+                <div class="multi-select-item" data-name="rệp">
+                    <input type="checkbox" id="pest1">
+                    <label for="pest1">Rệp</label>
+                </div>
+                <div class="multi-select-item" data-name="sâu đục thân">
+                    <input type="checkbox" id="pest2">
+                    <label for="pest2">Sâu đục thân</label>
+                </div>
+                <div class="multi-select-item" data-name="sâu ăn lá">
+                    <input type="checkbox" id="pest3">
+                    <label for="pest3">Sâu ăn lá</label>
+                </div>
+                <div class="multi-select-item" data-name="bọ trĩ">
+                    <input type="checkbox" id="pest4">
+                    <label for="pest4">Bọ trĩ</label>
+                </div>
+            </div>
+
+            <div class="add-new-section">
+                <button type="button" class="btn btn-secondary" onclick="toggleForm('addPestForm')">
+                    <i class="fa-solid fa-plus"></i>
+                    Thêm sâu hại mới
+                </button>
+                <div id="addPestForm" class="add-new-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tên sâu hại</label>
+                            <input type="text">
+                        </div>
+                        <div class="form-group">
+                            <label>Mô tả</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary">Thêm</button>
+                    <button type="button" class="btn btn-danger" onclick="toggleForm('addPestForm')">Hủy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Công dụng -->
+        <div class="card">
+            <h2 class="section-title">
+                <i class="fas fa-star"></i>
+                Công dụng
+            </h2>
+
+            <div class="search-box">
+                <i class="fas fa-search"></i>
+                <input type="text" id="useSearch" placeholder="Tìm kiếm công dụng..."
+                    onkeyup="searchItems('useSearch', 'useContainer')">
+            </div>
+
+            <div class="multi-select-container" id="useContainer">
+                <div class="multi-select-item" data-name="ăn tươi">
+                    <input type="checkbox" id="use1">
+                    <label for="use1">Ăn tươi</label>
+                </div>
+                <div class="multi-select-item" data-name="chế biến">
+                    <input type="checkbox" id="use2">
+                    <label for="use2">Chế biến</label>
+                </div>
+                <div class="multi-select-item" data-name="làm thuốc">
+                    <input type="checkbox" id="use3">
+                    <label for="use3">Làm thuốc</label>
+                </div>
+                <div class="multi-select-item" data-name="trang trí">
+                    <input type="checkbox" id="use4">
+                    <label for="use4">Trang trí</label>
+                </div>
+                <div class="multi-select-item" data-name="công nghiệp">
+                    <input type="checkbox" id="use5">
+                    <label for="use5">Công nghiệp</label>
+                </div>
+            </div>
+
+            <div class="add-new-section">
+                <button type="button" class="btn btn-secondary" onclick="toggleForm('addUseForm')">
+                    <i class="fa-solid fa-plus"></i>
+                    Thêm công dụng mới
+                </button>
+                <div id="addUseForm" class="add-new-form">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Tên công dụng</label>
+                            <input type="text">
+                        </div>
+                    </div>
+                    <div class="form-row single">
+                        <div class="form-group">
+                            <label>Mô tả công dụng</label>
+                            <textarea rows="3"></textarea>
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary">Thêm</button>
+                    <button type="button" class="btn btn-danger" onclick="toggleForm('addUseForm')">Hủy</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="button" class="btn btn-danger">
+                <i class="fa-solid fa-xmark"></i>
+                Hủy
+            </button>
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-save"></i>
+                Lưu thông tin
+            </button>
+        </div>
     </div>
 
-    <div class="container">
-        <form id="plantForm">
-            <!-- Thông tin cơ bản -->
-            <div class="card">
-                <h2 class="section-title">📝 Thông tin cơ bản</h2>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="plantName">Tên cây trồng *</label>
-                        <input type="text" id="plantName" name="plantName" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="scientificName">Tên khoa học</label>
-                        <input type="text" id="scientificName" name="scientificName">
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="category">Danh mục *</label>
-                        <select id="category" name="category" required>
-                            <option value="">-- Chọn danh mục --</option>
-                            <option value="1">Rau ăn lá</option>
-                            <option value="2">Cây ăn quả</option>
-                            <option value="3">Dược liệu</option>
-                            <option value="4">Hoa cảnh</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="imageUrl">URL hình ảnh</label>
-                        <input type="url" id="imageUrl" name="imageUrl" onchange="previewImage()">
-                    </div>
-                </div>
-
-                <div class="form-row single">
-                    <div class="form-group">
-                        <label for="description">Mô tả chi tiết</label>
-                        <textarea id="description" name="description" rows="4"
-                            placeholder="Nhập mô tả chi tiết về cây trồng..."></textarea>
-                    </div>
-                </div>
-
-                <div id="imagePreview" style="display: none;">
-                    <img id="previewImg" class="image-preview" alt="Preview">
-                </div>
+    <!-- Thêm HTML này vào cuối body, trước thẻ đóng </body> -->
+    <div id="confirmModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>
+                    <i class="fas fa-check-circle"></i>
+                    Xác nhận thông tin
+                </h2>
+                <button class="modal-close" onclick="closeModal()">&times;</button>
             </div>
 
-            <!-- Điều kiện sinh trưởng -->
-            <div class="card">
-                <h2 class="section-title">🌡️ Điều kiện sinh trưởng</h2>
-
-                <div class="growth-conditions-grid">
-                    <div class="form-group">
-                        <label for="temperature">Nhiệt độ</label>
-                        <input type="text" id="temperature" name="temperature" placeholder="VD: 20-30°C">
+            <div class="modal-body">
+                <!-- Thông tin cơ bản -->
+                <div class="confirm-section">
+                    <h3><i class="fas fa-leaf"></i> Thông tin cơ bản</h3>
+                    <div class="confirm-row">
+                        <span class="label">Tên cây trồng:</span>
+                        <span class="value" id="confirmName">-</span>
                     </div>
-                    <div class="form-group">
-                        <label for="humidity">Độ ẩm</label>
-                        <input type="text" id="humidity" name="humidity" placeholder="VD: 60-80%">
+                    <div class="confirm-row">
+                        <span class="label">Tên khoa học:</span>
+                        <span class="value" id="confirmScientificName">-</span>
                     </div>
-                    <div class="form-group">
-                        <label for="soilType">Loại đất</label>
-                        <input type="text" id="soilType" name="soilType" placeholder="VD: Đất thịt pha cát">
+                    <div class="confirm-row">
+                        <span class="label">Danh mục:</span>
+                        <span class="value" id="confirmCategory">-</span>
                     </div>
-                    <div class="form-group">
-                        <label for="sunlight">Ánh sáng</label>
-                        <input type="text" id="sunlight" name="sunlight" placeholder="VD: Ánh sáng trực tiếp 6-8h/ngày">
+                    <div class="confirm-row">
+                        <span class="label">Mô tả:</span>
+                        <span class="value" id="confirmDescription">-</span>
                     </div>
-                </div>
-
-                <div class="form-row single">
-                    <div class="form-group">
-                        <label for="watering">Tưới nước</label>
-                        <textarea id="watering" name="watering" rows="3"
-                            placeholder="Hướng dẫn tưới nước chi tiết..."></textarea>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Bệnh hại -->
-            <div class="card">
-                <h2 class="section-title">🦠 Bệnh hại</h2>
-
-                <div class="multi-select-container">
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="disease1" name="diseases" value="1">
-                        <label for="disease1">Bệnh thối rễ - Gây ra bởi nấm, làm rễ cây thối nhũn</label>
-                    </div>
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="disease2" name="diseases" value="2">
-                        <label for="disease2">Bệnh đốm lá - Xuất hiện các đốm nâu trên lá</label>
-                    </div>
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="disease3" name="diseases" value="3">
-                        <label for="disease3">Bệnh héo vàng - Lá cây héo vàng và rụng</label>
+                    <div class="confirm-row" id="confirmImagesRow">
+                        <span class="label">Hình ảnh:</span>
+                        <div class="confirm-images" id="confirmImages"></div>
                     </div>
                 </div>
 
-                <div class="add-new-section">
-                    <button type="button" class="btn btn-secondary" onclick="toggleAddDisease()">
-                        ➕ Thêm bệnh hại mới
-                    </button>
-                    <div id="addDiseaseForm" class="add-new-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="newDiseaseName">Tên bệnh</label>
-                                <input type="text" id="newDiseaseName">
-                            </div>
-                            <div class="form-group">
-                                <label for="newDiseaseDesc">Mô tả</label>
-                                <input type="text" id="newDiseaseDesc">
-                            </div>
-                        </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label for="newDiseasePrevention">Phương pháp phòng chống</label>
-                                <textarea id="newDiseasePrevention" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="addDisease()">Thêm</button>
-                        <button type="button" class="btn btn-secondary" onclick="toggleAddDisease()">Hủy</button>
+                <!-- Điều kiện sinh trưởng -->
+                <div class="confirm-section">
+                    <h3><i class="fas fa-seedling"></i> Điều kiện sinh trưởng</h3>
+                    <div class="confirm-row">
+                        <span class="label">Nhiệt độ:</span>
+                        <span class="value" id="confirmTemperature">-</span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="label">Độ ẩm:</span>
+                        <span class="value" id="confirmHumidity">-</span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="label">Loại đất:</span>
+                        <span class="value" id="confirmSoil">-</span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="label">Ánh sáng:</span>
+                        <span class="value" id="confirmLight">-</span>
+                    </div>
+                    <div class="confirm-row">
+                        <span class="label">Tưới nước:</span>
+                        <span class="value" id="confirmWatering">-</span>
+                    </div>
+                </div>
+
+                <!-- Bệnh hại -->
+                <div class="confirm-section">
+                    <h3><i class="fas fa-virus"></i> Bệnh hại</h3>
+                    <div class="confirm-tags" id="confirmDiseases">
+                        <span class="empty-state">Chưa chọn bệnh hại</span>
+                    </div>
+                </div>
+
+                <!-- Sâu hại -->
+                <div class="confirm-section">
+                    <h3><i class="fas fa-bug"></i> Sâu hại</h3>
+                    <div class="confirm-tags" id="confirmPests">
+                        <span class="empty-state">Chưa chọn sâu hại</span>
+                    </div>
+                </div>
+
+                <!-- Công dụng -->
+                <div class="confirm-section">
+                    <h3><i class="fas fa-star"></i> Công dụng</h3>
+                    <div class="confirm-tags" id="confirmUses">
+                        <span class="empty-state">Chưa chọn công dụng</span>
                     </div>
                 </div>
             </div>
 
-            <!-- Sâu hại -->
-            <div class="card">
-                <h2 class="section-title">🐛 Sâu hại</h2>
-
-                <div class="multi-select-container">
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="pest1" name="pests" value="1">
-                        <label for="pest1">Rầy xanh - Hút nhựa cây, làm lá vàng úa</label>
-                    </div>
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="pest2" name="pests" value="2">
-                        <label for="pest2">Sâu cuốn lá - Ăn lá non, cuốn lá lại</label>
-                    </div>
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="pest3" name="pests" value="3">
-                        <label for="pest3">Tuyến trùng - Gây sưng rễ, cản trở hấp thu</label>
-                    </div>
-                </div>
-
-                <div class="add-new-section">
-                    <button type="button" class="btn btn-secondary" onclick="toggleAddPest()">
-                        ➕ Thêm sâu hại mới
-                    </button>
-                    <div id="addPestForm" class="add-new-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="newPestName">Tên sâu hại</label>
-                                <input type="text" id="newPestName">
-                            </div>
-                            <div class="form-group">
-                                <label for="newPestDesc">Mô tả</label>
-                                <input type="text" id="newPestDesc">
-                            </div>
-                        </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label for="newPestControl">Phương pháp kiểm soát</label>
-                                <textarea id="newPestControl" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="addPest()">Thêm</button>
-                        <button type="button" class="btn btn-secondary" onclick="toggleAddPest()">Hủy</button>
-                    </div>
-                </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">
+                    <i class="fas fa-edit"></i>
+                    Chỉnh sửa
+                </button>
+                <button type="button" class="btn btn-primary" onclick="submitForm()">
+                    <i class="fas fa-check"></i>
+                    Xác nhận và lưu
+                </button>
             </div>
-
-            <!-- Công dụng -->
-            <div class="card">
-                <h2 class="section-title">💊 Công dụng</h2>
-
-                <div class="multi-select-container">
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="use1" name="uses" value="1">
-                        <label for="use1">Thực phẩm - Cung cấp dinh dưỡng cho cơ thể</label>
-                    </div>
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="use2" name="uses" value="2">
-                        <label for="use2">Dược liệu - Có tác dụng chữa bệnh</label>
-                    </div>
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="use3" name="uses" value="3">
-                        <label for="use3">Trang trí - Làm đẹp không gian sống</label>
-                    </div>
-                    <div class="multi-select-item">
-                        <input type="checkbox" id="use4" name="uses" value="4">
-                        <label for="use4">Công nghiệp - Nguyên liệu sản xuất</label>
-                    </div>
-                </div>
-
-                <div class="add-new-section">
-                    <button type="button" class="btn btn-secondary" onclick="toggleAddUse()">
-                        ➕ Thêm công dụng mới
-                    </button>
-                    <div id="addUseForm" class="add-new-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="newUseName">Tên công dụng</label>
-                                <input type="text" id="newUseName">
-                            </div>
-                        </div>
-                        <div class="form-row single">
-                            <div class="form-group">
-                                <label for="newUseDesc">Mô tả công dụng</label>
-                                <textarea id="newUseDesc" rows="3"></textarea>
-                            </div>
-                        </div>
-                        <button type="button" class="btn btn-primary" onclick="addUse()">Thêm</button>
-                        <button type="button" class="btn btn-secondary" onclick="toggleAddUse()">Hủy</button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Nút hành động -->
-            <div class="form-actions">
-                <button type="button" class="btn btn-secondary">🚫 Hủy</button>
-                <button type="button" class="btn btn-danger">🗑️ Xóa cây trồng</button>
-                <button type="submit" class="btn btn-primary">💾 Lưu thông tin</button>
-            </div>
-        </form>
+        </div>
     </div>
 
     <script>
-        // Preview image function
-        function previewImage() {
-            const imageUrl = document.getElementById('imageUrl').value;
-            const preview = document.getElementById('imagePreview');
-            const previewImg = document.getElementById('previewImg');
+        let selectedFiles = [];
 
-            if (imageUrl) {
-                previewImg.src = imageUrl;
-                preview.style.display = 'block';
-            } else {
-                preview.style.display = 'none';
+        function toggleForm(formId) {
+            const form = document.getElementById(formId);
+            if (form) {
+                form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'block' : 'none';
             }
         }
 
-        // Toggle add disease form
-        function toggleAddDisease() {
-            const form = document.getElementById('addDiseaseForm');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        function previewImages(event) {
+            const files = Array.from(event.target.files);
+            const previewContainer = document.getElementById('imagePreview');
+
+            files.forEach(file => {
+                if (file && file.type.startsWith('image/')) {
+                    selectedFiles.push(file);
+
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const previewItem = document.createElement('div');
+                        previewItem.className = 'preview-item';
+
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+
+                        const removeBtn = document.createElement('button');
+                        removeBtn.className = 'remove-btn';
+                        removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+                        removeBtn.onclick = function () {
+                            previewItem.remove();
+                            const index = selectedFiles.indexOf(file);
+                            if (index > -1) {
+                                selectedFiles.splice(index, 1);
+                            }
+                        };
+
+                        previewItem.appendChild(img);
+                        previewItem.appendChild(removeBtn);
+                        previewContainer.appendChild(previewItem);
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            // Reset input để có thể chọn lại cùng file
+            event.target.value = '';
         }
 
-        // Add new disease
-        function addDisease() {
-            const name = document.getElementById('newDiseaseName').value;
-            const desc = document.getElementById('newDiseaseDesc').value;
-            const prevention = document.getElementById('newDiseasePrevention').value;
+        // Search function for multi-select items
+        function searchItems(searchInputId, containerId) {
+            const input = document.getElementById(searchInputId);
+            const filter = input.value.toLowerCase().trim();
+            const container = document.getElementById(containerId);
+            const items = container.getElementsByClassName('multi-select-item');
+            let hasResults = false;
 
-            if (name && desc) {
-                const container = document.querySelector('#addDiseaseForm').closest('.card').querySelector('.multi-select-container');
-                const newId = 'disease' + Date.now();
-                const newItem = document.createElement('div');
-                newItem.className = 'multi-select-item';
-                newItem.innerHTML = `
-                    <input type="checkbox" id="${newId}" name="diseases" value="${newId}" checked>
-                    <label for="${newId}">${name} - ${desc}</label>
-                `;
-                container.appendChild(newItem);
+            // Remove previous no-results message if exists
+            const prevNoResults = container.querySelector('.no-results');
+            if (prevNoResults) {
+                prevNoResults.remove();
+            }
 
-                // Clear form
-                document.getElementById('newDiseaseName').value = '';
-                document.getElementById('newDiseaseDesc').value = '';
-                document.getElementById('newDiseasePrevention').value = '';
-                toggleAddDisease();
+            for (let i = 0; i < items.length; i++) {
+                const dataName = items[i].getAttribute('data-name');
+                const label = items[i].getElementsByTagName('label')[0];
+                const textValue = dataName || label.textContent || label.innerText;
 
-                alert('Đã thêm bệnh hại mới thành công!');
-            } else {
-                alert('Vui lòng điền đầy đủ thông tin!');
+                if (textValue.toLowerCase().indexOf(filter) > -1) {
+                    items[i].style.display = '';
+                    hasResults = true;
+                } else {
+                    items[i].style.display = 'none';
+                }
+            }
+
+            // Show no results message if nothing found
+            if (!hasResults && filter !== '') {
+                const noResults = document.createElement('div');
+                noResults.className = 'no-results';
+                noResults.innerHTML = '<i class="fas fa-search"></i><p>Không tìm thấy kết quả phù hợp</p>';
+                container.appendChild(noResults);
             }
         }
 
-        // Toggle add pest form
-        function toggleAddPest() {
-            const form = document.getElementById('addPestForm');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        }
+        // Drag and drop functionality
+        const uploadSection = document.querySelector('.image-upload-section');
 
-        // Add new pest
-        function addPest() {
-            const name = document.getElementById('newPestName').value;
-            const desc = document.getElementById('newPestDesc').value;
-            const control = document.getElementById('newPestControl').value;
-
-            if (name && desc) {
-                const container = document.querySelector('#addPestForm').closest('.card').querySelector('.multi-select-container');
-                const newId = 'pest' + Date.now();
-                const newItem = document.createElement('div');
-                newItem.className = 'multi-select-item';
-                newItem.innerHTML = `
-                    <input type="checkbox" id="${newId}" name="pests" value="${newId}" checked>
-                    <label for="${newId}">${name} - ${desc}</label>
-                `;
-                container.appendChild(newItem);
-
-                // Clear form
-                document.getElementById('newPestName').value = '';
-                document.getElementById('newPestDesc').value = '';
-                document.getElementById('newPestControl').value = '';
-                toggleAddPest();
-
-                alert('Đã thêm sâu hại mới thành công!');
-            } else {
-                alert('Vui lòng điền đầy đủ thông tin!');
-            }
-        }
-
-        // Toggle add use form
-        function toggleAddUse() {
-            const form = document.getElementById('addUseForm');
-            form.style.display = form.style.display === 'none' ? 'block' : 'none';
-        }
-
-        // Add new use
-        function addUse() {
-            const name = document.getElementById('newUseName').value;
-            const desc = document.getElementById('newUseDesc').value;
-
-            if (name && desc) {
-                const container = document.querySelector('#addUseForm').closest('.card').querySelector('.multi-select-container');
-                const newId = 'use' + Date.now();
-                const newItem = document.createElement('div');
-                newItem.className = 'multi-select-item';
-                newItem.innerHTML = `
-                    <input type="checkbox" id="${newId}" name="uses" value="${newId}" checked>
-                    <label for="${newId}">${name} - ${desc}</label>
-                `;
-                container.appendChild(newItem);
-
-                // Clear form
-                document.getElementById('newUseName').value = '';
-                document.getElementById('newUseDesc').value = '';
-                toggleAddUse();
-
-                alert('Đã thêm công dụng mới thành công!');
-            } else {
-                alert('Vui lòng điền đầy đủ thông tin!');
-            }
-        }
-
-        // Form submission handler
-        document.getElementById('plantForm').addEventListener('submit', function (e) {
+        uploadSection.addEventListener('dragover', (e) => {
             e.preventDefault();
-
-            // Collect form data
-            const formData = {
-                name: document.getElementById('plantName').value,
-                scientificName: document.getElementById('scientificName').value,
-                category: document.getElementById('category').value,
-                description: document.getElementById('description').value,
-                imageUrl: document.getElementById('imageUrl').value,
-                growthConditions: {
-                    temperature: document.getElementById('temperature').value,
-                    humidity: document.getElementById('humidity').value,
-                    soilType: document.getElementById('soilType').value,
-                    sunlight: document.getElementById('sunlight').value,
-                    watering: document.getElementById('watering').value
-                },
-                diseases: Array.from(document.querySelectorAll('input[name="diseases"]:checked')).map(cb => cb.value),
-                pests: Array.from(document.querySelectorAll('input[name="pests"]:checked')).map(cb => cb.value),
-                uses: Array.from(document.querySelectorAll('input[name="uses"]:checked')).map(cb => cb.value)
-            };
-
-            console.log('Plant data:', formData);
-            alert('Thông tin cây trồng đã được lưu thành công!\n\nDữ liệu đã được ghi vào console để kiểm tra.');
+            uploadSection.style.borderColor = '#4CAF50';
+            uploadSection.style.background = '#f0f9f0';
         });
 
-        // Demo data for editing mode
-        function loadDemoData() {
-            document.getElementById('plantName').value = 'Cà chua';
-            document.getElementById('scientificName').value = 'Solanum lycopersicum';
-            document.getElementById('category').value = '2';
-            document.getElementById('description').value = 'Cà chua là loại quả có màu đỏ, giàu vitamin C và lycopene, thường được sử dụng trong nấu ăn và làm salad.';
-            document.getElementById('imageUrl').value = 'https://images.unsplash.com/photo-1546470427-227211c0b77b?ixlib=rb-4.0.3&w=400';
-            document.getElementById('temperature').value = '18-25°C';
-            document.getElementById('humidity').value = '65-75%';
-            document.getElementById('soilType').value = 'Đất thịt pha cát, tơi xốp';
-            document.getElementById('sunlight').value = 'Ánh sáng trực tiếp 6-8 giờ/ngày';
-            document.getElementById('watering').value = 'Tưới đều đặn, giữ độ ẩm đất khoảng 70-80%. Tránh tưới ngập úng.';
+        uploadSection.addEventListener('dragleave', () => {
+            uploadSection.style.borderColor = '#ddd';
+            uploadSection.style.background = '#fafafa';
+        });
 
-            // Select some diseases, pests, and uses
-            document.getElementById('disease2').checked = true;
-            document.getElementById('pest1').checked = true;
-            document.getElementById('use1').checked = true;
+        uploadSection.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadSection.style.borderColor = '#ddd';
+            uploadSection.style.background = '#fafafa';
 
-            previewImage();
+            const files = e.dataTransfer.files;
+            const fileInput = document.getElementById('plantImages');
+            fileInput.files = files;
+            previewImages({ target: fileInput });
+        });
+
+
+
+        /* Thêm JavaScript này vào cuối <script> */
+
+        // Hàm mở modal và hiển thị thông tin xác nhận
+        function openConfirmModal() {
+            // Lấy thông tin cơ bản
+            const name = document.querySelector('input[placeholder="Ví dụ: Cà chua"]').value;
+            const scientificName = document.querySelector('input[placeholder="Ví dụ: Solanum lycopersicum"]').value;
+            const category = document.querySelector('select').value;
+            const description = document.querySelector('textarea[placeholder="Nhập mô tả về cây trồng..."]').value;
+
+            // Điều kiện sinh trưởng
+            const temperature = document.querySelector('input[placeholder="Ví dụ: 20-30°C"]').value;
+            const humidity = document.querySelector('input[placeholder="Ví dụ: 60-80%"]').value;
+            const soil = document.querySelector('input[placeholder="Ví dụ: Đất pha cát"]').value;
+            const light = document.querySelector('input[placeholder="Ví dụ: Toàn phần"]').value;
+            const watering = document.querySelector('input[placeholder="Ví dụ: 2 lần/ngày"]').value;
+
+            // Cập nhật thông tin vào modal
+            document.getElementById('confirmName').textContent = name || '-';
+            document.getElementById('confirmScientificName').textContent = scientificName || '-';
+            document.getElementById('confirmCategory').textContent = category !== 'Chọn danh mục' ? category : '-';
+            document.getElementById('confirmDescription').textContent = description || '-';
+
+            document.getElementById('confirmTemperature').textContent = temperature || '-';
+            document.getElementById('confirmHumidity').textContent = humidity || '-';
+            document.getElementById('confirmSoil').textContent = soil || '-';
+            document.getElementById('confirmLight').textContent = light || '-';
+            document.getElementById('confirmWatering').textContent = watering || '-';
+
+            // Hiển thị hình ảnh
+            const imagesContainer = document.getElementById('confirmImages');
+            imagesContainer.innerHTML = '';
+
+            if (selectedFiles.length > 0) {
+                selectedFiles.forEach(file => {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        imagesContainer.appendChild(img);
+                    };
+                    reader.readAsDataURL(file);
+                });
+            } else {
+                imagesContainer.innerHTML = '<span class="empty-state">Chưa có hình ảnh</span>';
+            }
+
+            // Lấy bệnh hại đã chọn
+            const diseases = getSelectedItems('diseaseContainer');
+            displayConfirmTags('confirmDiseases', diseases, 'Chưa chọn bệnh hại');
+
+            // Lấy sâu hại đã chọn
+            const pests = getSelectedItems('pestContainer');
+            displayConfirmTags('confirmPests', pests, 'Chưa chọn sâu hại');
+
+            // Lấy công dụng đã chọn
+            const uses = getSelectedItems('useContainer');
+            displayConfirmTags('confirmUses', uses, 'Chưa chọn công dụng');
+
+            // Hiển thị modal
+            const modal = document.getElementById('confirmModal');
+            modal.classList.add('show');
         }
 
-        // Load demo data when page loads
-        window.addEventListener('load', function () {
-            setTimeout(loadDemoData, 1000);
+        // Hàm đóng modal
+        function closeModal() {
+            const modal = document.getElementById('confirmModal');
+            modal.classList.remove('show');
+        }
+
+        // Hàm lấy các item đã được chọn
+        function getSelectedItems(containerId) {
+            const container = document.getElementById(containerId);
+            const checkboxes = container.querySelectorAll('input[type="checkbox"]:checked');
+            const items = [];
+
+            checkboxes.forEach(checkbox => {
+                const label = checkbox.nextElementSibling;
+                if (label) {
+                    items.push(label.textContent);
+                }
+            });
+
+            return items;
+        }
+
+        // Hàm hiển thị tags xác nhận
+        function displayConfirmTags(containerId, items, emptyMessage) {
+            const container = document.getElementById(containerId);
+            container.innerHTML = '';
+
+            if (items.length > 0) {
+                items.forEach(item => {
+                    const tag = document.createElement('span');
+                    tag.className = 'confirm-tag';
+                    tag.innerHTML = `<i class="fas fa-check"></i> ${item}`;
+                    container.appendChild(tag);
+                });
+            } else {
+                container.innerHTML = `<span class="empty-state">${emptyMessage}</span>`;
+            }
+        }
+
+        // Hàm submit form (có thể tùy chỉnh theo nhu cầu)
+        function submitForm() {
+            alert('Đang lưu thông tin...');
+            closeModal();
+            // Thêm code xử lý submit ở đây
+        }
+
+        // Đóng modal khi click bên ngoài
+        window.onclick = function (event) {
+            const modal = document.getElementById('confirmModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        }
+
+        // Cập nhật nút "Lưu thông tin" để mở modal xác nhận
+        document.addEventListener('DOMContentLoaded', function () {
+            const saveButton = document.querySelector('.form-actions .btn-primary');
+            if (saveButton) {
+                saveButton.onclick = function (e) {
+                    e.preventDefault();
+                    openConfirmModal();
+                };
+            }
         });
     </script>
 </body>

@@ -1,0 +1,308 @@
+@page
+@model AgriWiki_Project.Pages.Report
+@{
+    ViewData["Title"] = "Report";
+}
+<link rel="stylesheet" href="~/css/report.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<div class="container-fluid p-4">
+    <!-- Header -->
+    <div class="mb-4">
+        <h1 class="fw-bold mb-2">Báo cáo Tổng quan</h1>
+        <p class="text-muted">Dashboard thống kê và phân tích dữ liệu hệ thống</p>
+    </div>
+
+    <!-- Time Range Filter -->
+    <div class="mb-4">
+        <button class="btn btn-outline-secondary btn-time-filter" onclick="setTimeRange('week')">7 ngày</button>
+        <button class="btn btn-outline-secondary btn-time-filter active" onclick="setTimeRange('month')">30
+            ngày</button>
+        <button class="btn btn-outline-secondary btn-time-filter" onclick="setTimeRange('year')">1 năm</button>
+    </div>
+
+    <!-- Summary Cards -->
+    <div class="row g-4 mb-4">
+        <div class="col-md-6 col-lg-3">
+            <div class="card stat-card card-1 shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <span class="badge">+12%</span>
+                    </div>
+                    <h6 class="mb-1">Tổng số cây trồng</h6>
+                    <h3 class="fw-bold mb-0">1,247</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card stat-card card-2 shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
+                        <span class="badge">+8%</span>
+                    </div>
+                    <h6 class="mb-1">Người dùng</h6>
+                    <h3 class="fw-bold mb-0">3,856</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card stat-card card-3 shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <span class="badge">+3%</span>
+                    </div>
+                    <h6 class="mb-1">Bệnh hại</h6>
+                    <h3 class="fw-bold mb-0">89</h3>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+            <div class="card stat-card card-4 shadow-lg">
+                <div class="card-body">
+                    <div class="d-flex justify-content-between align-items-center mb-3">
+                        <div class="stat-icon">
+                            <i class="fas fa-bug"></i>
+                        </div>
+                        <span class="badge">+5%</span>
+                    </div>
+                    <h6 class="mb-1">Sâu bệnh</h6>
+                    <h3 class="fw-bold mb-0">124</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row 1 -->
+    <div class="row g-3 mb-4">
+        <div class="col-lg-6">
+            <div class="chart-container">
+                <h5 class="fw-bold mb-3">Tăng trưởng theo thời gian</h5>
+                <canvas id="growthChart"></canvas>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="chart-container">
+                <h5 class="fw-bold mb-3">Phân bố theo danh mục</h5>
+                <canvas id="categoryChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Row 2 -->
+    <div class="row g-3 mb-4">
+        <div class="col-lg-6">
+            <div class="chart-container">
+                <h5 class="fw-bold mb-3">Top 10 cây trồng được xem nhiều</h5>
+                <canvas id="topPlantsChart"></canvas>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="chart-container">
+                <h5 class="fw-bold mb-3">Cây trồng theo công dụng</h5>
+                <canvas id="plantUsesChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <!-- Detailed Stats Table -->
+    <div class="table-card">
+        <h5 class="fw-bold mb-4">Thống kê chi tiết</h5>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Chỉ số</th>
+                        <th class="text-end">Giá trị</th>
+                        <th class="text-end">So với tháng trước</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Tổng số cây trồng</td>
+                        <td class="text-end fw-bold">1,247</td>
+                        <td class="text-end change-positive">+12%</td>
+                    </tr>
+                    <tr>
+                        <td>Cây trồng mới thêm (tháng này)</td>
+                        <td class="text-end fw-bold">57</td>
+                        <td class="text-end change-positive">+23%</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng số danh mục</td>
+                        <td class="text-end fw-bold">24</td>
+                        <td class="text-end change-neutral">0%</td>
+                    </tr>
+                    <tr>
+                        <td>Người dùng hoạt động</td>
+                        <td class="text-end fw-bold">3,856</td>
+                        <td class="text-end change-positive">+8%</td>
+                    </tr>
+                    <tr>
+                        <td>Tổng hình ảnh</td>
+                        <td class="text-end fw-bold">4,892</td>
+                        <td class="text-end change-positive">+15%</td>
+                    </tr>
+                    <tr>
+                        <td>Bệnh hại được ghi nhận</td>
+                        <td class="text-end fw-bold">89</td>
+                        <td class="text-end change-positive">+3%</td>
+                    </tr>
+                    <tr>
+                        <td>Sâu bệnh được ghi nhận</td>
+                        <td class="text-end fw-bold">124</td>
+                        <td class="text-end change-positive">+5%</td>
+                    </tr>
+                    <tr>
+                        <td>Công dụng được phân loại</td>
+                        <td class="text-end fw-bold">45</td>
+                        <td class="text-end change-positive">+2%</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<script>
+    let currentTimeRange = 'month';
+
+    function setTimeRange(range) {
+        currentTimeRange = range;
+        document.querySelectorAll('.btn-time-filter').forEach(btn => {
+            btn.classList.remove('active');
+        });
+        event.target.classList.add('active');
+        // Ở đây bạn có thể gọi API để cập nhật dữ liệu theo khoảng thời gian
+        console.log('Selected time range:', range);
+    }
+
+    // Growth Chart
+    const growthCtx = document.getElementById('growthChart').getContext('2d');
+    const growthChart = new Chart(growthCtx, {
+        type: 'line',
+        data: {
+            labels: ['T1', 'T2', 'T3', 'T4', 'T5', 'T6'],
+            datasets: [{
+                label: 'Cây trồng',
+                data: [980, 1020, 1080, 1140, 1190, 1247],
+                borderColor: '#198754',
+                backgroundColor: 'rgba(25, 135, 84, 0.1)',
+                tension: 0.4,
+                fill: true
+            }, {
+                label: 'Người dùng',
+                data: [3200, 3350, 3500, 3620, 3750, 3856],
+                borderColor: '#0d6efd',
+                backgroundColor: 'rgba(13, 110, 253, 0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: false
+                }
+            }
+        }
+    });
+
+    // Category Pie Chart
+    const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+    const categoryChart = new Chart(categoryCtx, {
+        type: 'pie',
+        data: {
+            labels: ['Cây ăn quả', 'Cây rau củ', 'Cây cảnh', 'Cây dược liệu'],
+            datasets: [{
+                data: [340, 425, 280, 202],
+                backgroundColor: [
+                    '#198754',
+                    '#0d6efd',
+                    '#ffc107',
+                    '#dc3545'
+                ]
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'right',
+                }
+            }
+        }
+    });
+
+    // Top Plants Chart
+    const topPlantsCtx = document.getElementById('topPlantsChart').getContext('2d');
+    const topPlantsChart = new Chart(topPlantsCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Cà chua', 'Dưa leo', 'Rau muống', 'Xoài', 'Hoa hồng', 'Ớt', 'Bưởi', 'Sầu riêng', 'Chanh', 'Cúc'],
+            datasets: [{
+                label: 'Lượt xem',
+                data: [4523, 3891, 3654, 3421, 3128, 2956, 2734, 2589, 2341, 2156],
+                backgroundColor: '#198754'
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                x: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+
+    // Plant Uses Chart
+    const plantUsesCtx = document.getElementById('plantUsesChart').getContext('2d');
+    const plantUsesChart = new Chart(plantUsesCtx, {
+        type: 'bar',
+        data: {
+            labels: ['Ăn quả', 'Làm thuốc', 'Trang trí', 'Rau ăn lá', 'Gia vị'],
+            datasets: [{
+                label: 'Số lượng',
+                data: [456, 324, 289, 378, 234],
+                backgroundColor: '#0d6efd'
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            },
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>

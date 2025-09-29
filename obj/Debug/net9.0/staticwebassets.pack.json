@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\css\\loginstyle.css"
     },
     {
+      "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\report.css",
+      "PackagePath": "staticwebassets\\css\\report.css"
+    },
+    {
       "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },
