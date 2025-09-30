@@ -72,6 +72,18 @@
       <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-h\u002B5yi/0Y2fo/wgWAmOrCinFCy8ExyRJ7/ye3aucxZz8="}]]]></EndpointProperties>
       <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"3907"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022h\u002B5yi/0Y2fo/wgWAmOrCinFCy8ExyRJ7/ye3aucxZz8=\u0022"},{"Name":"Last-Modified","Value":"Mon, 29 Sep 2025 15:49:17 GMT"}]]]></ResponseHeaders>
     </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/search.2xf98owftg.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\search.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"fingerprint","Value":"2xf98owftg"},{"Name":"integrity","Value":"sha256-Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY="},{"Name":"label","Value":"_content/AgriWiki_Project/css/search.css"}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"max-age=31536000, immutable"},{"Name":"Content-Length","Value":"2881"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY=\u0022"},{"Name":"Last-Modified","Value":"Tue, 30 Sep 2025 16:55:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
+    <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/search.css">
+      <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\search.css'))</AssetFile>
+      <Selectors><![CDATA[[]]]></Selectors>
+      <EndpointProperties><![CDATA[[{"Name":"integrity","Value":"sha256-Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY="}]]]></EndpointProperties>
+      <ResponseHeaders><![CDATA[[{"Name":"Accept-Ranges","Value":"bytes"},{"Name":"Cache-Control","Value":"no-cache"},{"Name":"Content-Length","Value":"2881"},{"Name":"Content-Type","Value":"text/css"},{"Name":"ETag","Value":"\u0022Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY=\u0022"},{"Name":"Last-Modified","Value":"Tue, 30 Sep 2025 16:55:19 GMT"}]]]></ResponseHeaders>
+    </StaticWebAssetEndpoint>
     <StaticWebAssetEndpoint Include="_content/AgriWiki_Project/css/site.css">
       <AssetFile>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\css\site.css'))</AssetFile>
       <Selectors><![CDATA[[]]]></Selectors>

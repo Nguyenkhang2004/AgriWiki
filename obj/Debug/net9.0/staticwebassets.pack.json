@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\css\\report.css"
     },
     {
+      "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\search.css",
+      "PackagePath": "staticwebassets\\css\\search.css"
+    },
+    {
       "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\site.css",
       "PackagePath": "staticwebassets\\css\\site.css"
     },

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "l17ujHi+bhsYYFqSc0i+pF1xqA+xY3gh9nB69DKDjrg=",
+  "Hash": "8naP7e3TJ+uB3+XpmMZOXkVtzW6ykxcEDh9bvZkitII=",
   "Source": "AgriWiki_Project",
   "BasePath": "_content/AgriWiki_Project",
   "Mode": "Default",
@@ -792,6 +792,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\lib\\bootstrap\\dist\\css\\bootstrap-utilities.rtl.css"
+    },
+    {
+      "Identity": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\Debug\\net9.0\\compressed\\hdux1k3bqv-2xf98owftg.gz",
+      "SourceId": "AgriWiki_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\Debug\\net9.0\\compressed\\",
+      "BasePath": "_content/AgriWiki_Project",
+      "RelativePath": "css/search#[.{fingerprint=2xf98owftg}]?.css.gz",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Alternative",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\search.css",
+      "AssetTraitName": "Content-Encoding",
+      "AssetTraitValue": "gzip",
+      "Fingerprint": "qdbxyk33bu",
+      "Integrity": "3tkubVBQSfIH6d6twZ8+YJtTSsSKucFSrwdSsQK6BwY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\search.css"
     },
     {
       "Identity": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\Debug\\net9.0\\compressed\\hv5iqtslk9-q4kly9sp10.gz",
@@ -1653,6 +1674,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\css\\report.css"
+    },
+    {
+      "Identity": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\search.css",
+      "SourceId": "AgriWiki_Project",
+      "SourceType": "Discovered",
+      "ContentRoot": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\",
+      "BasePath": "_content/AgriWiki_Project",
+      "RelativePath": "css/search#[.{fingerprint}]?.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "2xf98owftg",
+      "Integrity": "Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\search.css"
     },
     {
       "Identity": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\site.css",
@@ -5104,6 +5146,304 @@
         {
           "Name": "integrity",
           "Value": "sha256-mjYRMpKwKxtiVEYofm1jbNXjBfkUSVjxK49W9nBGMZ8="
+        }
+      ]
+    },
+    {
+      "Route": "css/search.2xf98owftg.css",
+      "AssetFile": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\Debug\\net9.0\\compressed\\hdux1k3bqv-2xf98owftg.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001177856302"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "848"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3tkubVBQSfIH6d6twZ8+YJtTSsSKucFSrwdSsQK6BwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 30 Sep 2025 16:55:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2xf98owftg"
+        },
+        {
+          "Name": "label",
+          "Value": "css/search.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY="
+        }
+      ]
+    },
+    {
+      "Route": "css/search.2xf98owftg.css",
+      "AssetFile": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\search.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2881"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 30 Sep 2025 16:55:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2xf98owftg"
+        },
+        {
+          "Name": "label",
+          "Value": "css/search.css"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY="
+        }
+      ]
+    },
+    {
+      "Route": "css/search.2xf98owftg.css.gz",
+      "AssetFile": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\Debug\\net9.0\\compressed\\hdux1k3bqv-2xf98owftg.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "848"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3tkubVBQSfIH6d6twZ8+YJtTSsSKucFSrwdSsQK6BwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 30 Sep 2025 16:55:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "2xf98owftg"
+        },
+        {
+          "Name": "label",
+          "Value": "css/search.css.gz"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-3tkubVBQSfIH6d6twZ8+YJtTSsSKucFSrwdSsQK6BwY="
+        }
+      ]
+    },
+    {
+      "Route": "css/search.css",
+      "AssetFile": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\Debug\\net9.0\\compressed\\hdux1k3bqv-2xf98owftg.gz",
+      "Selectors": [
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip",
+          "Quality": "0.001177856302"
+        }
+      ],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "848"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3tkubVBQSfIH6d6twZ8+YJtTSsSKucFSrwdSsQK6BwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 30 Sep 2025 16:55:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "W/\"Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY=\""
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY="
+        }
+      ]
+    },
+    {
+      "Route": "css/search.css",
+      "AssetFile": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\css\\search.css",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "2881"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 30 Sep 2025 16:55:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-Kh8YP1b5gue1ryLPsPOxWIDoHuldqUuXHELJIfa3DkY="
+        }
+      ]
+    },
+    {
+      "Route": "css/search.css.gz",
+      "AssetFile": "e:\\FPT\\OJT\\AgriWiki_Project\\obj\\Debug\\net9.0\\compressed\\hdux1k3bqv-2xf98owftg.gz",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "848"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "text/css"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"3tkubVBQSfIH6d6twZ8+YJtTSsSKucFSrwdSsQK6BwY=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 30 Sep 2025 16:55:19 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "no-cache"
+        },
+        {
+          "Name": "Content-Encoding",
+          "Value": "gzip"
+        },
+        {
+          "Name": "Vary",
+          "Value": "Content-Encoding"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-3tkubVBQSfIH6d6twZ8+YJtTSsSKucFSrwdSsQK6BwY="
         }
       ]
     },
