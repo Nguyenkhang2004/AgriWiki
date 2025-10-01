@@ -41,6 +41,10 @@
       "PackagePath": "staticwebassets\\favicon.ico"
     },
     {
+      "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\js\\helper\\tooltip.js",
+      "PackagePath": "staticwebassets\\js\\helper\\tooltip.js"
+    },
+    {
       "Id": "e:\\FPT\\OJT\\AgriWiki_Project\\wwwroot\\js\\login.js",
       "PackagePath": "staticwebassets\\js\\login.js"
     },

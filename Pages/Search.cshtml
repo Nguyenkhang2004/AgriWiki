@@ -11,7 +11,7 @@
             <div class="sidebar">
                 <div class="d-flex justify-content-between align-items-center mb-4">
                     <h5 class="mb-0"><i class="bi bi-funnel me-2"></i>Bộ lọc</h5>
-                    <button class="btn btn-sm btn-link text-danger p-0" id="clearAllBtn" style="display: none;">
+                    <button class="btn btn-sm btn-link text-danger p-0" onclick="clearAllFilters()">
                         Xóa tất cả
                     </button>
                 </div>
@@ -21,7 +21,37 @@
                     <div class="filter-title">
                         <i class="bi bi-grid me-1"></i>Danh mục
                     </div>
-                    <div id="categoryFilters"></div>
+                    <div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="category" value="" id="cat_all" checked
+                                onchange="filterPlants()">
+                            <label for="cat_all" class="ms-2">Tất cả</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="category" value="Cây ăn quả" id="cat_1"
+                                onchange="filterPlants()">
+                            <label for="cat_1" class="ms-2">Cây ăn quả</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="category" value="Cây công nghiệp" id="cat_2"
+                                onchange="filterPlants()">
+                            <label for="cat_2" class="ms-2">Cây công nghiệp</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="category" value="Cây rau" id="cat_3" onchange="filterPlants()">
+                            <label for="cat_3" class="ms-2">Cây rau</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="category" value="Cây cảnh" id="cat_4"
+                                onchange="filterPlants()">
+                            <label for="cat_4" class="ms-2">Cây cảnh</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="category" value="Cây thuốc" id="cat_5"
+                                onchange="filterPlants()">
+                            <label for="cat_5" class="ms-2">Cây thuốc</label>
+                        </div>
+                    </div>
                 </div>
 
                 <hr>
@@ -31,7 +61,33 @@
                     <div class="filter-title">
                         <i class="bi bi-sun me-1"></i>Điều kiện ánh sáng
                     </div>
-                    <div id="sunlightFilters"></div>
+                    <div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="sunlight" value="" id="sun_all" checked
+                                onchange="filterPlants()">
+                            <label for="sun_all" class="ms-2">Tất cả</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="sunlight" value="Ánh sáng mặt trời đầy đủ" id="sun_1"
+                                onchange="filterPlants()">
+                            <label for="sun_1" class="ms-2 small">Ánh sáng mặt trời đầy đủ</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="sunlight" value="Ánh sáng gián tiếp" id="sun_2"
+                                onchange="filterPlants()">
+                            <label for="sun_2" class="ms-2 small">Ánh sáng gián tiếp</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="sunlight" value="Bóng râm" id="sun_3"
+                                onchange="filterPlants()">
+                            <label for="sun_3" class="ms-2 small">Bóng râm</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="sunlight" value="Ánh sáng đầy đủ" id="sun_4"
+                                onchange="filterPlants()">
+                            <label for="sun_4" class="ms-2 small">Ánh sáng đầy đủ</label>
+                        </div>
+                    </div>
                 </div>
 
                 <hr>
@@ -41,13 +97,31 @@
                     <div class="filter-title">
                         <i class="bi bi-droplet me-1"></i>Loại đất
                     </div>
-                    <div id="soilFilters"></div>
-                </div>
-
-                <!-- Active Filters Summary -->
-                <div id="activeFilters" class="active-filters mt-4" style="display: none;">
-                    <p class="small fw-bold mb-2">Đang lọc theo:</p>
-                    <div id="activeFilterTags"></div>
+                    <div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="soil" value="" id="soil_all" checked onchange="filterPlants()">
+                            <label for="soil_all" class="ms-2">Tất cả</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="soil" value="Đất tơi xốp" id="soil_1"
+                                onchange="filterPlants()">
+                            <label for="soil_1" class="ms-2 small">Đất tơi xốp</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="soil" value="Đất giàu dinh dưỡng" id="soil_2"
+                                onchange="filterPlants()">
+                            <label for="soil_2" class="ms-2 small">Đất giàu dinh dưỡng</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="soil" value="Đất thịt pha cát" id="soil_3"
+                                onchange="filterPlants()">
+                            <label for="soil_3" class="ms-2 small">Đất thịt pha cát</label>
+                        </div>
+                        <div class="filter-option">
+                            <input type="checkbox" name="soil" value="Đất cát" id="soil_4" onchange="filterPlants()">
+                            <label for="soil_4" class="ms-2 small">Đất cát</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -59,26 +133,128 @@
                 <div class="position-relative">
                     <i class="bi bi-search search-icon"></i>
                     <input type="text" class="form-control search-input" id="searchInput"
-                        placeholder="Tìm kiếm theo tên cây hoặc tên khoa học...">
+                        placeholder="Tìm kiếm theo tên cây hoặc tên khoa học..." oninput="filterPlants()">
                 </div>
             </div>
 
             <!-- Results Count -->
             <div class="mb-3">
                 <p class="text-muted">
-                    Tìm thấy <span class="fw-bold text-success" id="resultsCount">0</span> kết quả
+                    Tìm thấy <span class="fw-bold text-success" id="resultsCount">6</span> kết quả
                 </p>
             </div>
 
             <!-- Results Grid -->
-            <div class="row g-4" id="plantsGrid"></div>
+            <div class="row g-4" id="plantsGrid">
+                <!-- Cà chua -->
+                <div class="col-lg-4 col-md-6 plant-item" data-category="Cây rau"
+                    data-sunlight="Ánh sáng mặt trời đầy đủ" data-soil="Đất tơi xốp" data-name="cà chua"
+                    data-scientific="solanum lycopersicum" data-tooltip="Đây là tooltip động cho cây 🌱">
+                    <div class="plant-card" data-tooltip="Đây là tooltip động cho cây 🌱">
+                        <img src="https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400" alt="Cà chua"
+                            class="plant-image" data-tooltip="Đây là tooltip động cho cây 🌱">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="mb-0">Cà chua</h5>
+                                <span class="plant-category">Cây rau</span>
+                            </div>
+                            <p class="small text-muted fst-italic mb-2">Solanum lycopersicum</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hoa hồng -->
+                <div class="col-lg-4 col-md-6 plant-item" data-category="Cây cảnh" data-sunlight="Ánh sáng gián tiếp"
+                    data-soil="Đất giàu dinh dưỡng" data-name="hoa hồng" data-scientific="rosa">
+                    <div class="plant-card" data-tooltip="Đây là tooltip động cho cây 🌱">
+                        <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400" alt="Hoa hồng"
+                            class="plant-image">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="mb-0">Hoa hồng</h5>
+                                <span class="plant-category">Cây cảnh</span>
+                            </div>
+                            <p class="small text-muted fst-italic mb-2">Rosa</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Xoài -->
+                <div class="col-lg-4 col-md-6 plant-item" data-category="Cây ăn quả"
+                    data-sunlight="Ánh sáng mặt trời đầy đủ" data-soil="Đất thịt pha cát" data-name="xoài"
+                    data-scientific="mangifera indica">
+                    <div class="plant-card" data-tooltip="Đây là tooltip động cho cây 🌱">
+                        <img src="https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=400" alt="Xoài"
+                            class="plant-image">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="mb-0">Xoài</h5>
+                                <span class="plant-category">Cây ăn quả</span>
+                            </div>
+                            <p class="small text-muted fst-italic mb-2">Mangifera indica</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Húng quế -->
+                <div class="col-lg-4 col-md-6 plant-item" data-category="Cây thuốc" data-sunlight="Ánh sáng đầy đủ"
+                    data-soil="Đất tơi xốp" data-name="húng quế" data-scientific="ocimum basilicum">
+                    <div class="plant-card" data-tooltip="Đây là tooltip động cho cây 🌱">
+                        <img src="https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400" alt="Húng quế"
+                            class="plant-image">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="mb-0">Húng quế</h5>
+                                <span class="plant-category">Cây thuốc</span>
+                            </div>
+                            <p class="small text-muted fst-italic mb-2">Ocimum basilicum</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cà phê -->
+                <div class="col-lg-4 col-md-6 plant-item" data-category="Cây công nghiệp" data-sunlight="Bóng râm"
+                    data-soil="Đất cát" data-name="cà phê" data-scientific="coffea arabica">
+                    <div class="plant-card" data-tooltip="Đây là tooltip động cho cây 🌱">
+                        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400" alt="Cà phê"
+                            class="plant-image">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="mb-0">Cà phê</h5>
+                                <span class="plant-category">Cây công nghiệp</span>
+                            </div>
+                            <p class="small text-muted fst-italic mb-2">Coffea arabica</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Dừa -->
+                <div class="col-lg-4 col-md-6 plant-item" data-category="Cây công nghiệp"
+                    data-sunlight="Ánh sáng mặt trời đầy đủ" data-soil="Đất cát" data-name="dừa"
+                    data-scientific="cocos nucifera">
+                    <div class="plant-card" data-tooltip="Đây là tooltip động cho cây 🌱">
+                        <img src="https://images.unsplash.com/photo-1598449356475-b9f71db7d847?w=400" alt="Dừa"
+                            class="plant-image">
+                        <div class="p-3">
+                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                <h5 class="mb-0">Dừa</h5>
+                                <span class="plant-category">Cây công nghiệp</span>
+                            </div>
+                            <p class="small text-muted fst-italic mb-2">Cocos nucifera</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
 
             <!-- No Results -->
-            <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results" id="noResults">
                 <i class="bi bi-search" style="font-size: 4rem; color: #ccc;"></i>
                 <h4 class="mt-3">Không tìm thấy kết quả</h4>
                 <p class="text-muted">Thử điều chỉnh bộ lọc hoặc từ khóa tìm kiếm của bạn</p>
-                <button class="btn btn-success" id="clearFiltersBtn" style="display: none;">
+                <button class="btn btn-success" onclick="clearAllFilters()">
                     Xóa bộ lọc
                 </button>
             </div>
@@ -87,335 +263,54 @@
 </div>
 
 <script>
-    // Mock Data
-    const categories = [
-        { category_id: 1, name: 'Cây ăn quả' },
-        { category_id: 2, name: 'Cây công nghiệp' },
-        { category_id: 3, name: 'Cây rau' },
-        { category_id: 4, name: 'Cây cảnh' },
-        { category_id: 5, name: 'Cây thuốc' }
-    ];
+    function filterPlants() {
+        const searchValue = document.getElementById('searchInput').value.toLowerCase();
+        const categoryValue = document.querySelector('input[name="category"]:checked').value;
+        const sunlightValue = document.querySelector('input[name="sunlight"]:checked').value;
+        const soilValue = document.querySelector('input[name="soil"]:checked').value;
 
-    const plants = [
-        {
-            plant_id: 1,
-            name: 'Cà chua',
-            scientific_name: 'Solanum lycopersicum',
-            category: 'Cây rau',
-            description: 'Cây cà chua là loại cây trồng phổ biến, cho quả đỏ giàu vitamin C',
-            image_url: 'https://images.unsplash.com/photo-1592924357228-91a4daadcfea?w=400',
-            temperature_range: '20-30°C',
-            sunlight: 'Ánh sáng mặt trời đầy đủ',
-            soil_type: 'Đất tơi xốp'
-        },
-        {
-            plant_id: 2,
-            name: 'Hoa hồng',
-            scientific_name: 'Rosa',
-            category: 'Cây cảnh',
-            description: 'Cây hoa hồng là loại hoa cảnh đẹp, có nhiều màu sắc khác nhau',
-            image_url: 'https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=400',
-            temperature_range: '15-25°C',
-            sunlight: 'Ánh sáng gián tiếp',
-            soil_type: 'Đất giàu dinh dưỡng'
-        },
-        {
-            plant_id: 3,
-            name: 'Xoài',
-            scientific_name: 'Mangifera indica',
-            category: 'Cây ăn quả',
-            description: 'Cây ăn quả nhiệt đới cho quả ngọt, giàu vitamin A',
-            image_url: 'https://images.unsplash.com/photo-1601493700631-2b16ec4b4716?w=400',
-            temperature_range: '24-30°C',
-            sunlight: 'Ánh sáng mặt trời đầy đủ',
-            soil_type: 'Đất thịt pha cát'
-        },
-        {
-            plant_id: 4,
-            name: 'Húng quế',
-            scientific_name: 'Ocimum basilicum',
-            category: 'Cây thuốc',
-            description: 'Cây gia vị có mùi thơm đặc trưng, dùng trong ẩm thực và y học',
-            image_url: 'https://images.unsplash.com/photo-1618375569909-3c8616cf7733?w=400',
-            temperature_range: '18-28°C',
-            sunlight: 'Ánh sáng đầy đủ',
-            soil_type: 'Đất tơi xốp'
-        },
-        {
-            plant_id: 5,
-            name: 'Cà phê',
-            scientific_name: 'Coffea arabica',
-            category: 'Cây công nghiệp',
-            description: 'Cây công nghiệp quan trọng, hạt dùng để pha chế cà phê',
-            image_url: 'https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=400',
-            temperature_range: '15-24°C',
-            sunlight: 'Bóng râm',
-            soil_type: 'Đất cát'
-        },
-        {
-            plant_id: 6,
-            name: 'Dừa',
-            scientific_name: 'Cocos nucifera',
-            category: 'Cây công nghiệp',
-            description: 'Cây nhiệt đới có nhiều công dụng, từ nước đến dầu dừa',
-            image_url: 'https://images.unsplash.com/photo-1598449356475-b9f71db7d847?w=400',
-            temperature_range: '27-35°C',
-            sunlight: 'Ánh sáng mặt trời đầy đủ',
-            soil_type: 'Đất cát'
-        }
-    ];
+        const plantItems = document.querySelectorAll('.plant-item');
+        let visibleCount = 0;
 
-    const sunlightOptions = [...new Set(plants.map(p => p.sunlight))];
-    const soilTypeOptions = [...new Set(plants.map(p => p.soil_type))];
+        plantItems.forEach(item => {
+            const name = item.dataset.name;
+            const scientific = item.dataset.scientific;
+            const category = item.dataset.category;
+            const sunlight = item.dataset.sunlight;
+            const soil = item.dataset.soil;
 
-    // State
-    let filters = {
-        search: '',
-        category: '',
-        sunlight: '',
-        soilType: ''
-    };
+            const matchSearch = !searchValue || name.includes(searchValue) || scientific.includes(searchValue);
+            const matchCategory = !categoryValue || category === categoryValue;
+            const matchSunlight = !sunlightValue || sunlight === sunlightValue;
+            const matchSoil = !soilValue || soil === soilValue;
 
-    // Initialize
-    function init() {
-        renderCategoryFilters();
-        renderSunlightFilters();
-        renderSoilFilters();
-        renderPlants();
-        attachEventListeners();
-    }
-
-    function renderCategoryFilters() {
-        const container = document.getElementById('categoryFilters');
-        let html = `
-                <div class="filter-option">
-                    <input type="radio" name="category" value="" id="cat_all" checked>
-                    <label for="cat_all" class="ms-2">Tất cả</label>
-                </div>
-            `;
-        categories.forEach(cat => {
-            html += `
-                    <div class="filter-option">
-                        <input type="radio" name="category" value="${cat.name}" id="cat_${cat.category_id}">
-                        <label for="cat_${cat.category_id}" class="ms-2">${cat.name}</label>
-                    </div>
-                `;
+            if (matchSearch && matchCategory && matchSunlight && matchSoil) {
+                item.style.display = '';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
         });
-        container.innerHTML = html;
-    }
 
-    function renderSunlightFilters() {
-        const container = document.getElementById('sunlightFilters');
-        let html = `
-                <div class="filter-option">
-                    <input type="radio" name="sunlight" value="" id="sun_all" checked>
-                    <label for="sun_all" class="ms-2">Tất cả</label>
-                </div>
-            `;
-        sunlightOptions.forEach((option, index) => {
-            html += `
-                    <div class="filter-option">
-                        <input type="radio" name="sunlight" value="${option}" id="sun_${index}">
-                        <label for="sun_${index}" class="ms-2 small">${option}</label>
-                    </div>
-                `;
-        });
-        container.innerHTML = html;
-    }
+        document.getElementById('resultsCount').textContent = visibleCount;
 
-    function renderSoilFilters() {
-        const container = document.getElementById('soilFilters');
-        let html = `
-                <div class="filter-option">
-                    <input type="radio" name="soilType" value="" id="soil_all" checked>
-                    <label for="soil_all" class="ms-2">Tất cả</label>
-                </div>
-            `;
-        soilTypeOptions.forEach((option, index) => {
-            html += `
-                    <div class="filter-option">
-                        <input type="radio" name="soilType" value="${option}" id="soil_${index}">
-                        <label for="soil_${index}" class="ms-2 small">${option}</label>
-                    </div>
-                `;
-        });
-        container.innerHTML = html;
-    }
-
-    function getFilteredPlants() {
-        return plants.filter(plant => {
-            const matchSearch = !filters.search ||
-                plant.name.toLowerCase().includes(filters.search.toLowerCase()) ||
-                plant.scientific_name.toLowerCase().includes(filters.search.toLowerCase());
-
-            const matchCategory = !filters.category || plant.category === filters.category;
-            const matchSunlight = !filters.sunlight || plant.sunlight === filters.sunlight;
-            const matchSoil = !filters.soilType || plant.soil_type === filters.soilType;
-
-            return matchSearch && matchCategory && matchSunlight && matchSoil;
-        });
-    }
-
-    function renderPlants() {
-        const filteredPlants = getFilteredPlants();
-        const container = document.getElementById('plantsGrid');
         const noResults = document.getElementById('noResults');
-        const resultsCount = document.getElementById('resultsCount');
-
-        resultsCount.textContent = filteredPlants.length;
-
-        if (filteredPlants.length === 0) {
-            container.innerHTML = '';
+        const grid = document.getElementById('plantsGrid');
+        if (visibleCount === 0) {
             noResults.style.display = 'block';
-            const hasFilters = filters.category || filters.sunlight || filters.soilType;
-            document.getElementById('clearFiltersBtn').style.display = hasFilters ? 'inline-block' : 'none';
+            grid.style.display = 'none';
         } else {
             noResults.style.display = 'none';
-            let html = '';
-            filteredPlants.forEach(plant => {
-                html += `
-                        <div class="col-lg-4 col-md-6">
-                            <div class="plant-card">
-                                <img src="${plant.image_url}" alt="${plant.name}" class="plant-image">
-                                <div class="p-3">
-                                    <div class="d-flex justify-content-between align-items-start mb-2">
-                                        <h5 class="mb-0">${plant.name}</h5>
-                                        <span class="plant-category">${plant.category}</span>
-                                    </div>
-                                    <p class="small text-muted fst-italic mb-2">${plant.scientific_name}</p>
-                                    <p class="small text-secondary mb-3">${plant.description}</p>
-                                    
-                                    <div class="mb-3">
-                                        <div class="condition-badge mb-2">
-                                            <i class="bi bi-thermometer-half text-warning"></i>
-                                            <span>${plant.temperature_range}</span>
-                                        </div>
-                                        <div class="condition-badge mb-2">
-                                            <i class="bi bi-sun text-warning"></i>
-                                            <span class="text-truncate">${plant.sunlight}</span>
-                                        </div>
-                                        <div class="condition-badge">
-                                            <i class="bi bi-droplet text-primary"></i>
-                                            <span>${plant.soil_type}</span>
-                                        </div>
-                                    </div>
-                                    
-                                    <button class="btn btn-detail w-100">Xem chi tiết</button>
-                                </div>
-                            </div>
-                        </div>
-                    `;
-            });
-            container.innerHTML = html;
+            grid.style.display = '';
         }
-
-        updateActiveFilters();
-    }
-
-    function updateActiveFilters() {
-        const hasFilters = filters.category || filters.sunlight || filters.soilType;
-        const activeFiltersDiv = document.getElementById('activeFilters');
-        const clearAllBtn = document.getElementById('clearAllBtn');
-
-        if (hasFilters) {
-            activeFiltersDiv.style.display = 'block';
-            clearAllBtn.style.display = 'block';
-
-            let tagsHtml = '';
-            if (filters.category) {
-                tagsHtml += `
-                        <span class="filter-tag">
-                            Danh mục: ${filters.category}
-                            <button class="remove-btn" onclick="removeFilter('category')">
-                                <i class="bi bi-x-circle"></i>
-                            </button>
-                        </span>
-                    `;
-            }
-            if (filters.sunlight) {
-                tagsHtml += `
-                        <span class="filter-tag">
-                            Ánh sáng: ${filters.sunlight}
-                            <button class="remove-btn" onclick="removeFilter('sunlight')">
-                                <i class="bi bi-x-circle"></i>
-                            </button>
-                        </span>
-                    `;
-            }
-            if (filters.soilType) {
-                tagsHtml += `
-                        <span class="filter-tag">
-                            Đất: ${filters.soilType}
-                            <button class="remove-btn" onclick="removeFilter('soilType')">
-                                <i class="bi bi-x-circle"></i>
-                            </button>
-                        </span>
-                    `;
-            }
-            document.getElementById('activeFilterTags').innerHTML = tagsHtml;
-        } else {
-            activeFiltersDiv.style.display = 'none';
-            clearAllBtn.style.display = 'none';
-        }
-    }
-
-    function removeFilter(filterType) {
-        filters[filterType] = '';
-        const radioName = filterType === 'soilType' ? 'soilType' : filterType;
-        document.querySelector(`input[name="${radioName}"][value=""]`).checked = true;
-        renderPlants();
     }
 
     function clearAllFilters() {
-        filters = {
-            search: '',
-            category: '',
-            sunlight: '',
-            soilType: ''
-        };
         document.getElementById('searchInput').value = '';
-        document.querySelectorAll('input[type="radio"]').forEach(radio => {
-            if (radio.value === '') radio.checked = true;
+        document.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+            if (checkbox.value === '') checkbox.checked = true;
         });
-        renderPlants();
+        filterPlants();
     }
 
-    function attachEventListeners() {
-        // Search
-        document.getElementById('searchInput').addEventListener('input', (e) => {
-            filters.search = e.target.value;
-            renderPlants();
-        });
-
-        // Category filters
-        document.querySelectorAll('input[name="category"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                filters.category = e.target.value;
-                renderPlants();
-            });
-        });
-
-        // Sunlight filters
-        document.querySelectorAll('input[name="sunlight"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                filters.sunlight = e.target.value;
-                renderPlants();
-            });
-        });
-
-        // Soil filters
-        document.querySelectorAll('input[name="soilType"]').forEach(radio => {
-            radio.addEventListener('change', (e) => {
-                filters.soilType = e.target.value;
-                renderPlants();
-            });
-        });
-
-        // Clear all
-        document.getElementById('clearAllBtn').addEventListener('click', clearAllFilters);
-        document.getElementById('clearFiltersBtn').addEventListener('click', clearAllFilters);
-    }
-
-    // Initialize app
-    init();
 </script>
